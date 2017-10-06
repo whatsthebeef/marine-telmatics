@@ -17,7 +17,16 @@ export class RegisterPage {
   }
 
   status(){
-    this.navCtrl.setRoot( StatusPage )
+    this.navCtrl.setRoot(StatusPage)
+  }
+
+  register(){
+    this.backend.register({ email: this.email, password: this.password })
+      .then((result) => {
+        console.log(result);
+      }, (err) => {
+        console.log(err);
+      });
   }
 
 }

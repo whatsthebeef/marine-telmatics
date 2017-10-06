@@ -1,5 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { FirebaseBackendProvider } from '../../providers/firebase-backend/firebase-backend';
 
 @IonicPage()
 @Component({
@@ -11,17 +12,22 @@ export class StatusPage {
   @ViewChild('map') mapElement;  
   map: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public backend: FirebaseBackendProvider) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad StatusPage');
-    this.initMap();
+    this.backend.boat('861510039282476').then(boat => {
+      // this.initMap(58.6366911,-3.0827025);
+      this.initMap(boat.lat, boat.long);
+    }, err => {
+      console.log(err);
+    });
   }
 
-  initMap() {
+  initMap(lat, lng) {
 
-    let latLng = new google.maps.LatLng(58.6366911,-3.0827025); 
+    let latLng = new google.maps.LatLng(lat, lng); 
 
     let mapOptions = {
       center: latLng, 
