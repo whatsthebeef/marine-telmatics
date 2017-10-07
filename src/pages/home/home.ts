@@ -12,7 +12,8 @@ export class HomePage {
   email = '';
   password = '';
   
-    constructor(public navCtrl: NavController, public backend: FirebaseBackendProvider) {
+  constructor(public navCtrl: NavController, public backend: FirebaseBackendProvider) {
+
   }
 
   register(){
@@ -25,11 +26,10 @@ export class HomePage {
 
   signIn(){
     this.backend.login({ email: this.email, password: this.password })
-      .then((result) => {
+      .then(result => {
         console.log( result );
-      }, (err) => {
+      }, err => {
         console.log( err );
       });
   }
-
 }

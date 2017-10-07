@@ -3,36 +3,53 @@ import { HttpClient } from '@angular/common/http';
 import { HttpHeaders } from '@angular/common/http';
 import 'rxjs/add/operator/map';
 
-/*
-  Generated class for the FirebaseBackendProvider provider.
 
-  See https://angular.io/guide/dependency-injection for more info on providers
-  and Angular DI.
-*/
 @Injectable()
 export class FirebaseBackendProvider {
+
   apiUrl = 'http://us-central1-marinetelmatics.cloudfunctions.net';
-  
+  headers = new HttpHeaders().set('Content-Type', 'application/json')
+                      .append('Access-Control-Allow-Origin', '*')
+                      .append('Access-Control-Allow-Methods', 'POST, GET, OPTIONS, PUT')
+                      .append('Accept', 'application/json');
+
   constructor(public http: HttpClient) {
     console.log('Hello FirebaseBackendProvider Provider');
   }
 
   login( data ) {
-    
-    return new Promise(resolve => {
-      this.http.post(this.apiUrl+'/login',
-                     JSON.stringify( data ),
-                    {
-                       headers: new HttpHeaders().set('Content-type',
-                                                 'application/json')
-                    }
-          )
+    return this.post('/login', data);
+  }
+
+  register( data ) {
+    return this.post('/register', data);
+  }
+
+  boat( imei ) {
+    return this.get('/boat?imei='+imei);
+  }
+  
+  post( path, data ) {
+    return new Promise((resolve, reject) => {
+      this.http.post(this.apiUrl+path, data, { headers:this.header })
         .subscribe(data => {
           resolve(data);
-        }, (err) => {
+        }, err => {
           console.log(err);
+          reject(err);
         });
     });
   }
-  
+
+  get( path ) {
+    return new Promise((resolve, reject) => {
+      this.http.get(this.apiUrl+path, { headers:this.header })
+        .subscribe(data => {
+          resolve(data);
+        }, err => {
+          console.log(err);
+          reject(err);
+        });
+    });
+  }
 }
