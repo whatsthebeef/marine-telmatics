@@ -8,10 +8,10 @@ import 'rxjs/add/operator/map';
 export class FirebaseBackendProvider {
 
   apiUrl = 'http://us-central1-marinetelmatics.cloudfunctions.net';
-  headers = new HttpHeaders().set('Content-Type', 'application/json')
-                      .append('Access-Control-Allow-Origin', '*')
-                      .append('Access-Control-Allow-Methods', 'POST, GET, OPTIONS, PUT')
-                      .append('Accept', 'application/json');
+  headers = new HttpHeaders().set('Content-Type', 'text/plain');
+    //                   .append('Access-Control-Allow-Origin', '*')
+    // .append('Access-Control-Allow-Methods', 'POST, GET, OPTIONS, PUT')
+    //                   .append('Accept', 'application/json');
 
   constructor(public http: HttpClient) {
     console.log('Hello FirebaseBackendProvider Provider');
@@ -31,7 +31,7 @@ export class FirebaseBackendProvider {
   
   post( path, data ) {
     return new Promise((resolve, reject) => {
-      this.http.post(this.apiUrl+path, data, { headers:this.header })
+      this.http.post(this.apiUrl+path, data, { headers:this.headers })
         .subscribe(data => {
           resolve(data);
         }, err => {
@@ -43,7 +43,7 @@ export class FirebaseBackendProvider {
 
   get( path ) {
     return new Promise((resolve, reject) => {
-      this.http.get(this.apiUrl+path, { headers:this.header })
+      this.http.get( this.apiUrl+path, {headers: this.headers} )
         .subscribe(data => {
           resolve(data);
         }, err => {

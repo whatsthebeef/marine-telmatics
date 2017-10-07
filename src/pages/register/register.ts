@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { StatusPage } from '../status/status';
+import { FirebaseBackendProvider } from '../../providers/firebase-backend/firebase-backend';
 
 @IonicPage()
 @Component({
@@ -9,7 +10,10 @@ import { StatusPage } from '../status/status';
 })
 export class RegisterPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor( public navCtrl: NavController,
+               public navParams: NavParams,
+               public backend: FirebaseBackendProvider
+             ) {
   }
 
   ionViewDidLoad() {

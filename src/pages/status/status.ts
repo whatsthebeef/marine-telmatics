@@ -11,14 +11,47 @@ export class StatusPage {
 
   @ViewChild('map') mapElement;  
   map: any;
-
-  constructor(public navCtrl: NavController, public navParams: NavParams, public backend: FirebaseBackendProvider) {
+  boat = {
+    IMEI: "",
+    antitheftloopalarm: 0,
+    geofencedmonitoring: 0,
+    geofencedradius: "",
+    shorepower: 0,
+    bilgemonitoring: 0,
+    bilgepumpmarktime: 0,
+    bilgepumpspacetime: 0,
+    ignitionmonitoring: 0,
+    battwarningthreshold: "",
+    battalarmthreshold: "",
+    vbatmonitoring: 0,
+    tempwarninghigh: "",
+    tempwarninglow: "",
+    refreshrate: 0,
+    batt: "",
+    battfault: 0,
+    bilgepumpfault: 0,
+    engine: "0",
+    lat: "",
+    long:"",
+    geofencedfault: 0,
+    geofencedfaultlonglat: "",
+    groundspeed: "",
+    shorefault: 0,
+    temperature: ""
+  }
+  
+  constructor( public navCtrl: NavController,
+               public navParams: NavParams,
+               public backend: FirebaseBackendProvider
+             ) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad StatusPage');
-    this.backend.boat('861510039282476').then(boat => {
+    this.backend.boat('861510039282476').then(status => {
       // this.initMap(58.6366911,-3.0827025);
+      console.log(status);
+      this.boat = status;
       this.initMap(boat.lat, boat.long);
     }, err => {
       console.log(err);
