@@ -26,6 +26,7 @@
         "@ionic-native/status-bar": "4.3.0",
         "@ionic/storage": "2.0.1",
         "@types/google-maps": "^3.2.0",
+        "cordova-android": "^6.3.0",
         "cordova-ios": "^4.4.0",
         "cordova-plugin-device": "^1.1.4",
         "cordova-plugin-googlemaps": "git+https://github.com/mapsplugin/cordova-plugin-googlemaps.git",

@@ -13,7 +13,10 @@ export class RegisterPage {
   password = '';
   email = '';
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public backend: FirebaseBackendProvider) {
+  constructor( public navCtrl: NavController,
+               public navParams: NavParams,
+               public backend: FirebaseBackendProvider
+             ) {
   }
 
   ionViewDidLoad() {

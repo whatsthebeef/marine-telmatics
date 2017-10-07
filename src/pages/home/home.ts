@@ -13,6 +13,7 @@ export class HomePage {
   password = '';
   
   constructor(public navCtrl: NavController, public backend: FirebaseBackendProvider) {
+
   }
 
   register(){
@@ -32,5 +33,4 @@ export class HomePage {
         console.log(err);
       });
   }
-
 }

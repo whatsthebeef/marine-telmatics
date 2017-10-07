@@ -13,13 +13,17 @@
       <ion-col>
         <ion-item>
           <ion-label>Battery value</ion-label>
-          <ion-input type="text" readonly value="12v"></ion-input>
+          <ion-input type="text" readonly value={{boat.batt}}></ion-input>
         </ion-item>
       </ion-col>
       <ion-col>
         <ion-item>
           <ion-label>Bilge Pump</ion-label>
-          <ion-input type="boolean" readonly value="On"></ion-input>
+          <ion-input
+             type="boolean"
+             readonly
+             value={{boat.bilgepumpfault}}>
+          </ion-input>
         </ion-item>
       </ion-col>
     </ion-row>
@@ -29,7 +33,7 @@
           <ion-label>
             Shore Power Connected
           </ion-label>
-          <ion-input type="text" readonly value="?"></ion-input>
+          <ion-input type="text" readonly value={{boat.shorefault}}></ion-input>
         </ion-item>
       </ion-col>
       <ion-col>
@@ -37,7 +41,7 @@
           <ion-label>
             Engine Running Hours
           </ion-label>
-          <ion-input type="number" readonly value="2"></ion-input>
+          <ion-input type="number" readonly value={{boat.engine}}></ion-input>
         </ion-item>
       </ion-col>
     </ion-row>
