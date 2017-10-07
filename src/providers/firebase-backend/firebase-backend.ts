@@ -31,7 +31,7 @@ export class FirebaseBackendProvider {
   
   post( path, data ) {
     return new Promise((resolve, reject) => {
-      this.http.post(this.apiUrl+path, data, { headers:this.header })
+      this.http.post(this.apiUrl+path, data, { headers:this.headers })
         .subscribe(data => {
           resolve(data);
         }, err => {
@@ -43,7 +43,7 @@ export class FirebaseBackendProvider {
 
   get( path ) {
     return new Promise((resolve, reject) => {
-      this.http.get(this.apiUrl+path, { headers:this.header })
+      this.http.get(this.apiUrl+path, { headers:this.headers })
         .subscribe(data => {
           resolve(data);
         }, err => {

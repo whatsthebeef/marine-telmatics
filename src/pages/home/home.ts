@@ -19,16 +19,17 @@ export class HomePage {
     this.navCtrl.push( RegisterPage )
   }
 
-  status(){
-    this.navCtrl.setRoot( StatusPage )
-  }
-
   signIn(){
     this.backend.login({ email: this.email, password: this.password })
       .then(result => {
-        console.log( result );
+        console.log(result);
+        let boats = [];
+        for(let boat in result){
+          boats.push(result[boat]);
+        }
+        this.navCtrl.setRoot(StatusPage, {boats:boats})
       }, err => {
-        console.log( err );
+        console.log(err);
       });
   }
 

@@ -17,12 +17,15 @@ export class StatusPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad StatusPage');
+    /*
     this.backend.boat('861510039282476').then(boat => {
-      // this.initMap(58.6366911,-3.0827025);
-      this.initMap(boat.lat, boat.long);
+      this.initMap(boat['lat'], boat['long']);
     }, err => {
       console.log(err);
     });
+    */
+    let boat = this.navParams.get('boat');
+    this.initMap(boat['lat'], boat['long']);
   }
 
   initMap(lat, lng) {
