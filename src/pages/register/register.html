@@ -8,24 +8,32 @@
 
 
 <ion-content padding>
-<ion-list inset>
+  <form (ngSubmit)="register()">
+    <ion-list inset>
 
     <ion-item>
       <ion-label>email</ion-label>
-      <ion-input type="text"></ion-input>
+      <ion-input type="text" [(ngModel)]="email" name="email"></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label>password</ion-label>
-      <ion-input type="password"></ion-input>
+      <ion-input type="password"
+                 [(ngModel)]="password"
+                 name="password">
+      </ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label>confirm password</ion-label>
-      <ion-input type="password"></ion-input>
+      <ion-input type="password"
+                 [(ngModel)]="confirmPassword"
+                 name="passwordConfirm">
+      </ion-input>
     </ion-item>
 
   </ion-list>
 
-  <button ion-button (click)="status()">Register</button>
+    <button ion-button>Register</button>
+    </form>
 </ion-content>

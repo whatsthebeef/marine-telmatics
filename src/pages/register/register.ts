@@ -30,9 +30,12 @@ export class RegisterPage {
   register(){
     this.backend.register({ email: this.email, password: this.password })
       .then((result) => {
-        console.log(result);
+        console.log('welcome!');
+         this.status();
       }, (err) => {
         console.log(err);
+        // DELETE THIS once server response is correct
+        this.status();
       });
   }
 

@@ -52,7 +52,7 @@ export class StatusPage {
     this.backend.boat('861510039282476').then(boat => {
       this.initMap(boat['lat'], boat['long']);
     */
-    let boat = this.navParams.get('boat');
+    let boat = this.navParams.get('boat') || this.boat;
     this.initMap(boat['lat'], boat['long']);
   }
 
