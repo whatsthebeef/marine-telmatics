@@ -8,10 +8,10 @@ import 'rxjs/add/operator/map';
 export class FirebaseBackendProvider {
 
   apiUrl = 'http://us-central1-marinetelmatics.cloudfunctions.net';
-  headers = new HttpHeaders().set('Content-Type', 'text/plain');
-    //                   .append('Access-Control-Allow-Origin', '*')
-    // .append('Access-Control-Allow-Methods', 'POST, GET, OPTIONS, PUT')
-    //                   .append('Accept', 'application/json');
+  headers = new HttpHeaders().set('Content-Type', 'application/json')
+                         .append('Access-Control-Allow-Origin', '*')
+                         .append('Access-Control-Allow-Methods', 'POST, GET, OPTIONS, PUT')
+                         .append('Accept', 'application/json');
 
   constructor(public http: HttpClient) {
     console.log('Hello FirebaseBackendProvider Provider');

@@ -48,14 +48,12 @@ export class StatusPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad StatusPage');
-    this.backend.boat('861510039282476').then(status => {
-      // this.initMap(58.6366911,-3.0827025);
-      console.log(status);
-      this.boat = status;
-      this.initMap(boat.lat, boat.long);
-    }, err => {
-      console.log(err);
-    });
+    /*
+    this.backend.boat('861510039282476').then(boat => {
+      this.initMap(boat['lat'], boat['long']);
+    */
+    let boat = this.navParams.get('boat');
+    this.initMap(boat['lat'], boat['long']);
   }
 
   initMap(lat, lng) {
@@ -70,7 +68,7 @@ export class StatusPage {
 
     this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
 
-    var marker = new google.maps.Marker({
+    new google.maps.Marker({
       position: latLng,
       map: this.map,
       title: 'Your Boat'
