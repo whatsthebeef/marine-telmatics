@@ -28,6 +28,11 @@ export class FirebaseBackendProvider {
   boat( imei ) {
     return this.get('/boat?imei='+imei);
   }
+
+  setLimits( boat ){
+    console.log('TODO: change to correct url and data format');
+    return this.post('/limits', boat);
+  }
   
   post( path, data ) {
     return new Promise((resolve, reject) => {

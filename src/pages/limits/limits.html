@@ -10,18 +10,27 @@
 </ion-header>
 
 <ion-content padding>
+  <form (ngSubmit)="setLimits()">
   <ion-grid>
     <ion-row>
       <ion-col>
         <ion-item>
           <ion-label>Battery High limit</ion-label>
-          <ion-input type="number" placeholder="14.8"></ion-input>
+          <ion-input type="number"
+                     placeholder="14.8"
+                     [(ngModel)]="boat.battwarningthreshold"
+                     name="battalarmthreshold">
+          </ion-input>
         </ion-item>
       </ion-col>
       <ion-col>
         <ion-item>
           <ion-label>Battery Low limit</ion-label>
-          <ion-input type="number" placeholder="11.7"></ion-input>
+          <ion-input type="number"
+                     placeholder="11.7"
+                     [(ngModel)]="boat.battalarmthreshold"
+                     name="battalarmthreshold">
+          </ion-input>
         </ion-item>
       </ion-col>
       <ion-col>
@@ -29,7 +38,12 @@
           <ion-label>
             Bilge Pump 1 Max On Time
           </ion-label>
-          <ion-input type="number" value="60"></ion-input>secs
+          <ion-input type="number"
+                     value="60"
+                     [(ngModel)]="boat.bilgepumpmarktime"
+                     name="bilgepumpmarktime"
+                     >
+          </ion-input>secs
         </ion-item>
       </ion-col>
     </ion-row>
@@ -39,7 +53,13 @@
           <ion-label>
             Geo Fence Warn
           </ion-label>
-          <ion-input type="number"  placeholder="1000">feet</ion-input>
+          <ion-input type="number"
+                     placeholder="1000"
+                     [(ngModel)]="boat.geofencedradius"
+                     name="geofencedradius"
+                     >
+            feet
+          </ion-input>
         </ion-item>
       </ion-col>
             <ion-col>
@@ -47,10 +67,16 @@
           <ion-label>
             Geo Fence Alarm
           </ion-label>
-          <ion-input type="number"  placeholder="1200"></ion-input>
+          <ion-input type="number"
+                     placeholder="1200"
+                     [(ngModel)]="boat.geofencedfault"
+                     name="geofencedfault"
+                     >
+          </ion-input>
         </ion-item>
       </ion-col>
     </ion-row>
   </ion-grid>
-
+  <button ion-button>Submit</button>
+</form>
 </ion-content>
