@@ -22,7 +22,7 @@ export class FirebaseBackendProvider {
   }
 
   register( user ) {
-    return this.post('/register', user);
+    return this.post('/createUser', user);
   }
 
   registerBoat( boat, userId ) {

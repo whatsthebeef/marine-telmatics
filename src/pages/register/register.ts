@@ -39,8 +39,8 @@ export class RegisterPage {
 
   register(){
     this.backend.register(this.user)
-      .then(boats => {
-        this.navCtrl.setRoot(StatusPage, {boats:boats})
+      .then(result => {
+        this.navCtrl.setRoot(StatusPage, result)
       }, err => {
         console.log(err);
         // DELETE THIS once server response is correct

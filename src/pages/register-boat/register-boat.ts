@@ -10,35 +10,39 @@ import { FirebaseBackendProvider } from '../../providers/firebase-backend/fireba
 })
 export class RegisterBoatPage {
 
+  /*
   boat = {
     "IMEI": "861510076",
     "user_id":"Uuid903475093",
     "name":"boat name",
     "marina":"marina"
   };
+  */
 
+  boat = {};
   userId = '';
 
   constructor( public navCtrl: NavController,
-               public navParams: NavParams,
-               public backend: FirebaseBackendProvider
-             ) {
+    public navParams: NavParams,
+    public backend: FirebaseBackendProvider
+  ) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad RegisterBoatPage');
-    this.boat = this.navParams.get('boat') || this.boat;
+    this.boat = this.navParams.get('boat') || {};
     this.userId = this.navParams.get('user_id') || this.userId; 
   }
 
-  registerBoat(){
+  registerBoat() {
     this.backend.registerBoat(this.boat, this.userId).then(boats => {
-        this.navCtrl.pop()
-      }, err => {
-        console.error(err);
-        // DELETE THIS once server response is correct
-        this.navCtrl.pop()
-      });
+      this.navParams.get('callback')(this.boat);
+      this.navCtrl.pop();
+    }, err => {
+      console.error(err);
+      // DELETE THIS once server response is correct
+      this.navCtrl.pop()
+    });
   }
 
 }

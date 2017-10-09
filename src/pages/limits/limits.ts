@@ -23,10 +23,11 @@ export class LimitsPage {
 
   setLimits(){
     this.backend.setLimits(this.boat).then(changes => {
-      for(key in changes) {
+      for(let key in changes) {
         this.boat[key] = changes[key];
       }
-      return this.navParams.get('callback')(this.boat);
+      this.navParams.get('callback')(this.boat);
+      this.navCtrl.pop();
     }, err => {
       console.log(err);
     });

@@ -14,6 +14,8 @@ export class StatusPage {
   @ViewChild('map') mapElement;  
   map: any;
   userId = '';
+  boats = [];
+  /*
   boats = [{
     IMEI: '',
     antitheftloopalarm: 0,
@@ -42,6 +44,7 @@ export class StatusPage {
     shorefault: 0,
     temperature: ''
   }];
+  */
 
   constructor( public navCtrl: NavController,
     public navParams: NavParams,
@@ -51,9 +54,11 @@ export class StatusPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad StatusPage');
-    this.boats = this.navParams.get('boats') || this.boats;
+    this.boats = this.navParams.get('boats') || [];
     this.userId = this.navParams.get('user_id') || this.userId; 
-    this.initMap();
+    if(this.boats.length > 0) {
+      this.initMap();
+    }
   }
 
   setLimits(boat) {
@@ -69,7 +74,11 @@ export class StatusPage {
   }
 
   registerBoat() {
-    this.navCtrl.push(RegisterBoatPage, {user_id:this.userId});
+    this.navCtrl.push(RegisterBoatPage, {user_id:this.userId, callback:this.onBoatRegistered});
+  }
+
+  onBoatRegistered(boat) {
+    this.boats.push(boat);
   }
 
   initMap() {
