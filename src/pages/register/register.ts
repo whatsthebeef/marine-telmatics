@@ -10,6 +10,8 @@ import { FirebaseBackendProvider } from '../../providers/firebase-backend/fireba
 })
 export class RegisterPage {
 
+  user = {};
+
   /*
   user = {
     "display_name" : "Jay Name",

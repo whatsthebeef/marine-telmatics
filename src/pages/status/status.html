@@ -11,19 +11,27 @@
   <div *ngFor='let boat of boats'>
     <ion-list>
       <ion-item>
+        <ion-label>Boat name</ion-label>
+        <ion-input type='text' readonly value='{{boat.name}}'></ion-input>
+      </ion-item>
+      <ion-item>
         <ion-label>Battery value</ion-label>
         <ion-input type='text' readonly value='{{boat.batt}}'></ion-input>
       </ion-item>
       <ion-item>
-        <ion-label>Bilge Pump</ion-label>
+        <ion-label>Bilge pump</ion-label>
         <ion-input type='boolean' readonly value='{{boat.bilgepumpfault}}'></ion-input>
       </ion-item>
       <ion-item>
-        <ion-label> Shore Power Connected </ion-label>
+        <ion-label>Shore power connected</ion-label>
         <ion-input type='text' readonly value='{{boat.shorefault}}'></ion-input>
       </ion-item>
       <ion-item>
-        <ion-label> Engine Running Hours </ion-label>
+        <ion-label>Engine running hours</ion-label>
+        <ion-input type='number' readonly value='{{boat.engine}}'></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>Engine running hours</ion-label>
         <ion-input type='number' readonly value='{{boat.engine}}'></ion-input>
       </ion-item>
     </ion-list>

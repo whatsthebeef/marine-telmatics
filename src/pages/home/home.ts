@@ -11,15 +11,16 @@ import { FirebaseBackendProvider } from '../../providers/firebase-backend/fireba
 export class HomePage {
 
   user = {};
-  
+
   constructor(public navCtrl: NavController, public backend: FirebaseBackendProvider) {
   }
 
-  register(){
+  register() {
     this.navCtrl.push(RegisterPage)
   }
 
-  signIn(){
+  signIn() {
+    console.log('New user email:' + this.user['email']);
     this.backend.login(this.user)
       .then(result => {
         this.navCtrl.setRoot(StatusPage, {boats:result['boats'], users_id:result['user_id']})

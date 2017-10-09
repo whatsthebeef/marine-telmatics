@@ -8,24 +8,59 @@
   <form (ngSubmit)='registerBoat()'>
     <ion-list inset>
 
-    <ion-item>
-      <ion-label>IMEI</ion-label>
-      <ion-input type='text' [(ngModel)]='boat.IMEI' name='IMEI'></ion-input>
-    </ion-item>
+      <ion-item>
+        <ion-label>IMEI</ion-label>
+        <ion-input type='text' [(ngModel)]='boat.IMEI' name='IMEI'></ion-input>
+      </ion-item>
 
-    <ion-item>
-      <ion-label>Boat Name</ion-label>
-      <ion-input type='text' [(ngModel)]='boat.name' name='name'> </ion-input>
-    </ion-item>
+      <ion-item>
+        <ion-label>Boat name</ion-label>
+        <ion-input type='text' [(ngModel)]='boat.name' name='name'> </ion-input>
+      </ion-item>
 
-    <ion-item>
-      <ion-label>This Marina</ion-label>
-      <ion-input type='text' [(ngModel)]='boat.marina' name='marina'>
-      </ion-input>
-    </ion-item>
+      <ion-item>
+        <ion-label>Marina</ion-label>
+        <ion-input type='text' [(ngModel)]='boat.marina' name='marina'>
+        </ion-input>
+      </ion-item>
 
-  </ion-list>
+      <ion-item>
+        <ion-label>Boat type</ion-label>
+        <ion-input type='text'  [(ngModel)]='boat.type' name='type'></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Boat model</ion-label>
+        <ion-input type='text'  [(ngModel)]='boat.model' name='model'></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Manufacturer</ion-label>
+        <ion-input type='text' [(ngModel)]='boat.manufacturer' name='manufacturer'></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Boat length</ion-label>
+        <ion-input type='text' [(ngModel)]='boat.length' name='length'></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Boat beam</ion-label>
+        <ion-input type='text' [(ngModel)]='boat.beam' name='beam'></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Boat depth</ion-label>
+        <ion-input type='text' [(ngModel)]='boat.depth' name='depth'></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Location contact number</ion-label>
+        <ion-input type='text' [(ngModel)]='boat.locationcontactnumber' name='locationcontactnumber'></ion-input>
+      </ion-item>
+
+    </ion-list>
 
     <button ion-button>Register</button>
-    </form>
+  </form>
 </ion-content>

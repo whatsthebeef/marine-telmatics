@@ -9,40 +9,12 @@ import { FirebaseBackendProvider } from '../../providers/firebase-backend/fireba
 })
 export class LimitsPage {
 
-  boat = {
-    IMEI: "",
-    antitheftloopalarm: 0,
-    geofencedmonitoring: 0,
-    geofencedradius: "",
-    shorepower: 0,
-    bilgemonitoring: 0,
-    bilgepumpmarktime: 0,
-    bilgepumpspacetime: 0,
-    ignitionmonitoring: 0,
-    battwarningthreshold: "",
-    battalarmthreshold: "",
-    vbatmonitoring: 0,
-    tempwarninghigh: "",
-    tempwarninglow: "",
-    refreshrate: 0,
-    batt: "",
-    battfault: 0,
-    bilgepumpfault: 0,
-    engine: "0",
-    lat: "",
-    long:"",
-    geofencedfault: 0,
-    geofencedfaultlonglat: "",
-    groundspeed: "",
-    shorefault: 0,
-    temperature: ""
-  }
-  
+  boat = {};
+
   constructor( public navCtrl: NavController,
-               public navParams: NavParams,
-               public backend: FirebaseBackendProvider
-             ) {
-  }
+    public navParams: NavParams,
+    public backend: FirebaseBackendProvider
+  ) {}
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad LimitsPage');
@@ -50,11 +22,14 @@ export class LimitsPage {
   }
 
   setLimits(){
-    this.backend.setLimits(this.boat).then(result => {
-        console.log('success!');
-      }, err => {
-        console.log(err);
-      });
+    this.backend.setLimits(this.boat).then(changes => {
+      for(key in changes) {
+        this.boat[key] = changes[key];
+      }
+      return this.navParams.get('callback')(this.boat);
+    }, err => {
+      console.log(err);
+    });
   }
 
 }

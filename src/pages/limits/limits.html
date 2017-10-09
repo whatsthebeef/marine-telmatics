@@ -1,7 +1,7 @@
 <ion-header>
   <ion-navbar>
     <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
+      <ion-icon name='menu'></ion-icon>
     </button>
 
     <ion-title>Limits</ion-title>
@@ -9,85 +9,28 @@
 </ion-header>
 
 <ion-content padding>
-  <form (ngSubmit)="setLimits()">
+  <form (ngSubmit)='setLimits()'>
     <ion-item>
-       <ion-label>Battery High limit</ion-label>
-       <ion-input type="number" placeholder="0.0" [(ngModel)]="boat.battwarningthreshold" name="battalarmthreshold"> </ion-input>
+      <ion-label>Battery High limit</ion-label>
+      <ion-input type='number' placeholder='0.0' [(ngModel)]='boat.battwarningthreshold' name='battalarmthreshold'> </ion-input>
     </ion-item>
     <ion-item>
-       <ion-label>Battery Low limit</ion-label>
-       <ion-input type="number" placeholder="0.0" [(ngModel)]="boat.battalarmthreshold" name="battalarmthreshold"> </ion-input>
+      <ion-label>Battery Low limit</ion-label>
+      <ion-input type='number' placeholder='0.0' [(ngModel)]='boat.battalarmthreshold' name='battalarmthreshold'> </ion-input>
     </ion-item>
     <ion-item>
-      <ion-label> Bilge Pump 1 Max On Time </ion-label>
-      <ion-input type="number" value="60" [(ngModel)]="boat.bilgepumpmarktime" name="bilgepumpmarktime" > </ion-input>secs
+      <ion-label>Bilge Pump 1 Max On Time</ion-label>
+      <ion-input type='number' value='60' [(ngModel)]='boat.bilgepumpmarktime' name='bilgepumpmarktime' > </ion-input>secs
     </ion-item>
     <ion-item>
-       <ion-label> Geo Fence Warn </ion-label>
-       <ion-input type="number" placeholder="0" [(ngModel)]="boat.geofencedradius" name="geofencedradius" > feet </ion-input>
+      <ion-label>Geo fence warn</ion-label>
+      <ion-input type='number' placeholder='0' [(ngModel)]='boat.geofencedradius' name='geofencedradius' > feet </ion-input>
     </ion-item>
     <ion-item>
-      <ion-label> Geo Fence Alarm </ion-label>
-      <ion-input type="number" placeholder="0" [(ngModel)]="boat.geofencedfault" name="geofencedfault" > </ion-input>
+      <ion-label>Geo fence alarm</ion-label>
+      <ion-input type='number' placeholder='0' [(ngModel)]='boat.geofencedfault' name='geofencedfault' > </ion-input>
     </ion-item>
-   
-    <!-- 
-  <ion-grid>
-    <ion-row>
-      <ion-col>
-        <ion-item>
-          <ion-label>Battery High limit</ion-label>
-          <ion-input type="number"
-                     placeholder="14.8"
-                     [(ngModel)]="boat.battwarningthreshold"
-                     name="battalarmthreshold">
-          </ion-input>
-        </ion-item>
-      </ion-col>
-      <ion-col>
-        <ion-item>
-          <ion-label>Battery Low limit</ion-label>
-          <ion-input type="number"
-                     placeholder="11.7"
-                     [(ngModel)]="boat.battalarmthreshold"
-                     name="battalarmthreshold">
-          </ion-input>
-        </ion-item>
-      </ion-col>
-      <ion-col>
-        <ion-item>
-          <ion-label> Bilge Pump 1 Max On Time </ion-label>
-          <ion-input type="number"
-                     value="60"
-                     [(ngModel)]="boat.bilgepumpmarktime"
-                     name="bilgepumpmarktime"
-                     >
-          </ion-input>secs
-        </ion-item>
-      </ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col>
-        <ion-item>
-          <ion-label> Geo Fence Warn </ion-label>
-          <ion-input type="number" placeholder="1000" [(ngModel)]="boat.geofencedradius" name="geofencedradius" > feet
-          </ion-input>
-        </ion-item>
-      </ion-col>
-            <ion-col>
-        <ion-item>
-          <ion-label> Geo Fence Alarm </ion-label>
-          <ion-input type="number"
-                     placeholder="1200"
-                     [(ngModel)]="boat.geofencedfault"
-                     name="geofencedfault"
-                     >
-          </ion-input>
-        </ion-item>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
-  -->
-  <button ion-button>Submit</button>
-</form>
+
+    <button ion-button>Submit</button>
+  </form>
 </ion-content>

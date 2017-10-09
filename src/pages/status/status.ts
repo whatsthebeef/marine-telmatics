@@ -57,7 +57,15 @@ export class StatusPage {
   }
 
   setLimits(boat) {
-    this.navCtrl.push(LimitsPage, {boat:boat});
+    this.navCtrl.push(LimitsPage, {boat:boat, callback:this.onLimitsSet});
+  }
+
+  onLimitsSet(boat) {
+    this.boats.forEach((b, i) => {
+      if(b.IMEI === boat.IMEI) {
+        this.boats[i] = b;
+      }
+    });
   }
 
   registerBoat() {
