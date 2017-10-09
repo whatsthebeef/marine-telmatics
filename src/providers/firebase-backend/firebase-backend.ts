@@ -17,21 +17,36 @@ export class FirebaseBackendProvider {
     console.log('Hello FirebaseBackendProvider Provider');
   }
 
-  login( data ) {
-    return this.post('/login', data);
+  login( credentials ) {
+    return this.post('/login', credentials).then(boats => {
+      return this.toArray(boats);
+    });
   }
 
-  register( data ) {
-    return this.post('/register', data);
+  register( user ) {
+    return this.post('/register', user).then(boats => {
+      return this.toArray(boats);
+    });
+  }
+
+  registerBoat( boat, userId ) {
+    boat['user_id'] = userId;
+    return this.post('/createIMEI', boat).then(boats => {
+      return this.toArray(boats);
+    });
   }
 
   boat( imei ) {
-    return this.get('/boat?imei='+imei);
+    return this.get('/boat?imei='+imei).then(boats => {
+      return this.toArray(boats);
+    });  
   }
 
   setLimits( boat ){
     console.log('TODO: change to correct url and data format');
-    return this.post('/limits', boat);
+    return this.post('/limits', boat).then(boats => {
+      return this.toArray(boats);
+    });
   }
   
   post( path, data ) {
@@ -57,4 +72,11 @@ export class FirebaseBackendProvider {
         });
     });
   }
+
+  toArray(obj) {
+    let array = [];
+    for(let key in obj){
+      array.push(obj[key]);
+    }
+  } 
 }

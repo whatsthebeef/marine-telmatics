@@ -9,28 +9,24 @@ import { FirebaseBackendProvider } from '../../providers/firebase-backend/fireba
   templateUrl: 'home.html'
 })
 export class HomePage {
-  email = '';
-  password = '';
+
+  user = {};
   
   constructor(public navCtrl: NavController, public backend: FirebaseBackendProvider) {
-
   }
 
   register(){
-    this.navCtrl.push( RegisterPage )
+    this.navCtrl.push(RegisterPage)
   }
 
   signIn(){
-    this.backend.login({ email: this.email, password: this.password })
+    this.backend.login(this.user)
       .then(result => {
-        console.log(result);
-        let boats = [];
-        for(let boat in result){
-          boats.push(result[boat]);
-        }
-        this.navCtrl.setRoot(StatusPage, {boats:boats})
+        this.navCtrl.setRoot(StatusPage, {boats:result['boats'], users_id:result['user_id']})
       }, err => {
         console.log(err);
+        // DELETE THIS once server response is correct
+        this.navCtrl.setRoot(StatusPage)
       });
   }
 }

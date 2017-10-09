@@ -1,0 +1,31 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Register Boat</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <form (ngSubmit)='registerBoat()'>
+    <ion-list inset>
+
+    <ion-item>
+      <ion-label>IMEI</ion-label>
+      <ion-input type='text' [(ngModel)]='boat.IMEI' name='IMEI'></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Boat Name</ion-label>
+      <ion-input type='text' [(ngModel)]='boat.name' name='name'> </ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>This Marina</ion-label>
+      <ion-input type='text' [(ngModel)]='boat.marina' name='marina'>
+      </ion-input>
+    </ion-item>
+
+  </ion-list>
+
+    <button ion-button>Register</button>
+    </form>
+</ion-content>

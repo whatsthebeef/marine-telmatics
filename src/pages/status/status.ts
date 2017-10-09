@@ -1,5 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { RegisterBoatPage } from '../register-boat/register-boat';
+import { LimitsPage } from '../limits/limits';
 import { FirebaseBackendProvider } from '../../providers/firebase-backend/firebase-backend';
 
 @IonicPage()
@@ -11,68 +13,76 @@ export class StatusPage {
 
   @ViewChild('map') mapElement;  
   map: any;
-  boat = {
-    IMEI: "",
+  userId = '';
+  boats = [{
+    IMEI: '',
     antitheftloopalarm: 0,
     geofencedmonitoring: 0,
-    geofencedradius: "",
+    geofencedradius: '',
     shorepower: 0,
     bilgemonitoring: 0,
     bilgepumpmarktime: 0,
     bilgepumpspacetime: 0,
     ignitionmonitoring: 0,
-    battwarningthreshold: "",
-    battalarmthreshold: "",
+    battwarningthreshold: '',
+    battalarmthreshold: '',
     vbatmonitoring: 0,
-    tempwarninghigh: "",
-    tempwarninglow: "",
+    tempwarninghigh: '',
+    tempwarninglow: '',
     refreshrate: 0,
-    batt: "",
+    batt: '12',
     battfault: 0,
     bilgepumpfault: 0,
-    engine: "0",
-    lat: "",
-    long:"",
+    engine: '0',
+    lat: '13.123',
+    long:'41.324',
     geofencedfault: 0,
-    geofencedfaultlonglat: "",
-    groundspeed: "",
+    geofencedfaultlonglat: '',
+    groundspeed: '',
     shorefault: 0,
-    temperature: ""
-  }
-  
+    temperature: ''
+  }];
+
   constructor( public navCtrl: NavController,
-               public navParams: NavParams,
-               public backend: FirebaseBackendProvider
-             ) {
+    public navParams: NavParams,
+    public backend: FirebaseBackendProvider
+  ) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad StatusPage');
-    /*
-    this.backend.boat('861510039282476').then(boat => {
-      this.initMap(boat['lat'], boat['long']);
-    */
-    let boat = this.navParams.get('boat') || this.boat;
-    this.initMap(boat['lat'], boat['long']);
+    this.boats = this.navParams.get('boats') || this.boats;
+    this.userId = this.navParams.get('user_id') || this.userId; 
+    this.initMap();
   }
 
-  initMap(lat, lng) {
+  setLimits(boat) {
+    this.navCtrl.push(LimitsPage, {boat:boat});
+  }
 
-    let latLng = new google.maps.LatLng(lat, lng); 
+  registerBoat() {
+    this.navCtrl.push(RegisterBoatPage, {user_id:this.userId});
+  }
+
+  initMap() {
+
+    let center = new google.maps.LatLng(parseFloat(this.boats[0]['lat']), parseFloat(this.boats[0]['long'])); 
 
     let mapOptions = {
-      center: latLng, 
-      zoom: 10, 
+      center: center, 
+      zoom: 5, 
       mapTypeId: google.maps.MapTypeId.ROADMAP
     }
 
     this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
 
-    new google.maps.Marker({
-      position: latLng,
-      map: this.map,
-      title: 'Your Boat'
+    this.boats.forEach(boat => {
+      let latLng = new google.maps.LatLng(parseFloat(boat['lat']), parseFloat(boat['long'])); 
+      new google.maps.Marker({
+        position: latLng,
+        map: this.map,
+        title: 'Your Boat'
+      });
     });
-
   }
 }

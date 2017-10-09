@@ -1,52 +1,38 @@
 <ion-header>
   <ion-navbar>
     <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
+      <ion-icon name='menu'></ion-icon>
     </button>
     <ion-title>Status</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  <ion-grid>
-    <ion-row>
-      <ion-col>
-        <ion-item>
-          <ion-label>Battery value</ion-label>
-          <ion-input type="text" readonly value={{boat.batt}}></ion-input>
-        </ion-item>
-      </ion-col>
-      <ion-col>
-        <ion-item>
-          <ion-label>Bilge Pump</ion-label>
-          <ion-input
-             type="boolean"
-             readonly
-             value={{boat.bilgepumpfault}}>
-          </ion-input>
-        </ion-item>
-      </ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col>
-        <ion-item>
-          <ion-label>
-            Shore Power Connected
-          </ion-label>
-          <ion-input type="text" readonly value={{boat.shorefault}}></ion-input>
-        </ion-item>
-      </ion-col>
-      <ion-col>
-        <ion-item>
-          <ion-label>
-            Engine Running Hours
-          </ion-label>
-          <ion-input type="number" readonly value={{boat.engine}}></ion-input>
-        </ion-item>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
+  <div *ngFor='let boat of boats'>
+    <ion-list>
+      <ion-item>
+        <ion-label>Battery value</ion-label>
+        <ion-input type='text' readonly value='{{boat.batt}}'></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label>Bilge Pump</ion-label>
+        <ion-input type='boolean' readonly value='{{boat.bilgepumpfault}}'></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label> Shore Power Connected </ion-label>
+        <ion-input type='text' readonly value='{{boat.shorefault}}'></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label> Engine Running Hours </ion-label>
+        <ion-input type='number' readonly value='{{boat.engine}}'></ion-input>
+      </ion-item>
+    </ion-list>
+    <button (click)='setLimits(boat)' ion-button small>Set Limits</button>
+  </div>
 
-  <div #map id="map"></div>
+  <br>
+  <div #map id='map'></div>
+
+  <button (click)='registerBoat()' ion-button>Register Boat</button>
 
 </ion-content>

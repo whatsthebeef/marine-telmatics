@@ -10,8 +10,20 @@ import { FirebaseBackendProvider } from '../../providers/firebase-backend/fireba
 })
 export class RegisterPage {
 
-  password = '';
-  email = '';
+  /*
+  user = {
+    "display_name" : "Jay Name",
+    "email" : "email3@email.com",
+    "first_name" : "Jay Name",
+    "home_phone" : "000000000000",
+    "last_modified" : "2017-01-02 00:00",
+    "last_name" : "Last Name",
+    "mobile_phone" : "00000000000",
+    "password" : "hello123",
+    "status" : "Pending",
+    "username" : "email3@email.com"
+  };
+  */
 
   constructor( public navCtrl: NavController,
                public navParams: NavParams,
@@ -23,19 +35,14 @@ export class RegisterPage {
     console.log('ionViewDidLoad RegisterPage');
   }
 
-  status(){
-    this.navCtrl.setRoot(StatusPage)
-  }
-
   register(){
-    this.backend.register({ email: this.email, password: this.password })
-      .then((result) => {
-        console.log('welcome!');
-         this.status();
-      }, (err) => {
+    this.backend.register(this.user)
+      .then(boats => {
+        this.navCtrl.setRoot(StatusPage, {boats:boats})
+      }, err => {
         console.log(err);
         // DELETE THIS once server response is correct
-        this.status();
+        this.navCtrl.setRoot(StatusPage)
       });
   }
 

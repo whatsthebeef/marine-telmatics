@@ -46,12 +46,13 @@ export class LimitsPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad LimitsPage');
+    this.boat = this.navParams.get('boat') || this.boat;
   }
 
   setLimits(){
-    this.backend.setLimits( this.boat ).then((result) => {
+    this.backend.setLimits(this.boat).then(result => {
         console.log('success!');
-      }, (err) => {
+      }, err => {
         console.log(err);
       });
   }
