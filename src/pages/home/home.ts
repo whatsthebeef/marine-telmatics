@@ -3,6 +3,7 @@ import { NavController } from 'ionic-angular';
 import { RegisterPage } from '../register/register';
 import { StatusPage } from '../status/status';
 import { FirebaseBackendProvider } from '../../providers/firebase-backend/firebase-backend';
+import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 
 @Component({
   selector: 'page-home',
@@ -11,8 +12,15 @@ import { FirebaseBackendProvider } from '../../providers/firebase-backend/fireba
 export class HomePage {
 
   user = {};
-
-  constructor(public navCtrl: NavController, public backend: FirebaseBackendProvider) {
+  
+  authForm : FormGroup;
+  constructor(public navCtrl: NavController,
+              public backend: FirebaseBackendProvider,
+              private fb: FormBuilder) {
+    this.authForm = this.fb.group({
+      'user.email' : [null, Validators.compose([Validators.required, Validators.minLength(5), Validators.maxLength(10)])],
+      'user.password': [null, Validators.compose([Validators.required, Validators.minLength(8) ])]
+    });
   }
 
   register() {
