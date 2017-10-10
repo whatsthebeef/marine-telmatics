@@ -5,17 +5,26 @@
 </ion-header>
 
 <ion-content padding>
-  <form (ngSubmit)='signIn()'>
+  <form (ngSubmit)='signIn(authForm.value)' [formGroup]="authForm">
     <ion-list inset>
 
       <ion-item>
         <ion-label>email</ion-label>
-        <ion-input type='text' [(ngModel)]='user.email' name='email'></ion-input>
+        <ion-input type='text'
+                   [formControl]="authForm.controls['user.email']"
+                   name='email'
+                   required
+                   >
+        </ion-input>
       </ion-item>
 
       <ion-item>
         <ion-label>password</ion-label>
-        <ion-input type='password'  [(ngModel)]='user.password' name='password'></ion-input>
+        <ion-input type='password'
+                   [formControl]="authForm.controls['user.password']"
+                   name='password'
+                   >
+        </ion-input>
       </ion-item>
 
     </ion-list>
