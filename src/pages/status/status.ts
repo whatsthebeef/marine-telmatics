@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Events } from 'ionic-angular';
 import { RegisterBoatPage } from '../register-boat/register-boat';
 import { LimitsPage } from '../limits/limits';
 import { FirebaseBackendProvider } from '../../providers/firebase-backend/firebase-backend';
@@ -48,7 +48,8 @@ export class StatusPage {
 
   constructor( public navCtrl: NavController,
     public navParams: NavParams,
-    public backend: FirebaseBackendProvider
+    public backend: FirebaseBackendProvider, 
+    public events: Events
   ) {
   }
 
@@ -59,26 +60,24 @@ export class StatusPage {
     if(this.boats.length > 0) {
       this.initMap();
     }
-  }
-
-  setLimits(boat) {
-    this.navCtrl.push(LimitsPage, {boat:boat, callback:this.onLimitsSet});
-  }
-
-  onLimitsSet(boat) {
-    this.boats.forEach((b, i) => {
-      if(b.IMEI === boat.IMEI) {
-        this.boats[i] = b;
-      }
+    this.events.subscribe('boat:registered', boat => {
+      this.boats.push(boat);
+    });
+    this.events.subscribe('boat:limits_set', boat => {
+      this.boats.forEach((b, i) => {
+        if(b.IMEI === boat.IMEI) {
+          this.boats[i] = b;
+        }
+      });
     });
   }
 
-  registerBoat() {
-    this.navCtrl.push(RegisterBoatPage, {user_id:this.userId, callback:this.onBoatRegistered});
+  setLimits(boat) {
+    this.navCtrl.push(LimitsPage, {boat:boat});
   }
 
-  onBoatRegistered(boat) {
-    this.boats.push(boat);
+  registerBoat() {
+    this.navCtrl.push(RegisterBoatPage, {user_id:this.userId});
   }
 
   initMap() {

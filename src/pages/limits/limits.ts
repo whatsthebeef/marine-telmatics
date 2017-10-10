@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Events } from 'ionic-angular';
 import { FirebaseBackendProvider } from '../../providers/firebase-backend/firebase-backend';
 
 @IonicPage()
@@ -13,12 +13,13 @@ export class LimitsPage {
 
   constructor( public navCtrl: NavController,
     public navParams: NavParams,
-    public backend: FirebaseBackendProvider
+    public backend: FirebaseBackendProvider, 
+    public events: Events
   ) {}
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad LimitsPage');
-    this.boat = this.navParams.get('boat') || this.boat;
+    this.boat = this.navParams.get('boat');
   }
 
   setLimits(){
@@ -26,10 +27,13 @@ export class LimitsPage {
       for(let key in changes) {
         this.boat[key] = changes[key];
       }
-      this.navParams.get('callback')(this.boat);
+      this.events.publish('boat:limits_set', this.boat);
       this.navCtrl.pop();
     }, err => {
       console.log(err);
+      // TODO Remove
+      // this.events.publish('boat:limits_set', this.boat);
+      // this.navCtrl.pop();
     });
   }
 

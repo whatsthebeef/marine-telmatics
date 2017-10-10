@@ -35,10 +35,12 @@ export class FirebaseBackendProvider {
   }
 
   setLimits( boat ){
-    return this.post('/limits', boat);
+    return this.post('/boat', boat);
   }
   
   post( path, data ) {
+    console.log("Post to path: " + path);
+    console.dir(data);
     return new Promise((resolve, reject) => {
       this.http.post(this.apiUrl+path, data, { headers:this.headers })
         .subscribe(data => {
@@ -51,6 +53,7 @@ export class FirebaseBackendProvider {
   }
 
   get( path ) {
+    console.log("Get from path: " + path);
     return new Promise((resolve, reject) => {
       this.http.get( this.apiUrl+path, {headers: this.headers} )
         .subscribe(data => {

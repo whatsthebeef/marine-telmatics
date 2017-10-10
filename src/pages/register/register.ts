@@ -44,7 +44,7 @@ export class RegisterPage {
       }, err => {
         console.log(err);
         // DELETE THIS once server response is correct
-        this.navCtrl.setRoot(StatusPage)
+        // this.navCtrl.setRoot(StatusPage)
       });
   }
 

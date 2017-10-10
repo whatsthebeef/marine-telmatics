@@ -20,7 +20,6 @@ export class HomePage {
   }
 
   signIn() {
-    console.log('New user email:' + this.user['email']);
     this.backend.login(this.user)
       .then(result => {
         this.navCtrl.setRoot(StatusPage, result)
