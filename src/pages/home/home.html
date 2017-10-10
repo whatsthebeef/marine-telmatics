@@ -12,6 +12,7 @@
         <ion-label>email</ion-label>
         <ion-input type='text'
                    [formControl]="authForm.controls['user.email']"
+                   [(ngModel)]='user.email' 
                    name='email'
                    required
                    >
@@ -22,6 +23,7 @@
         <ion-label>password</ion-label>
         <ion-input type='password'
                    [formControl]="authForm.controls['user.password']"
+                   [(ngModel)]='user.password'
                    name='password'
                    >
         </ion-input>
@@ -29,7 +31,7 @@
 
     </ion-list>
 
-    <button ion-button type='submit'>Sign In</button>
+    <button ion-button type='submit' [disabled]='!authForm.valid'>Sign In</button>
   </form>
   <button ion-button color='secondary'
     (click)='register()'>

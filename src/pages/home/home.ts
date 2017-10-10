@@ -18,8 +18,8 @@ export class HomePage {
               public backend: FirebaseBackendProvider,
               private fb: FormBuilder) {
     this.authForm = this.fb.group({
-      'user.email' : [null, Validators.compose([Validators.required, Validators.minLength(5), Validators.maxLength(10)])],
-      'user.password': [null, Validators.compose([Validators.required, Validators.minLength(8) ])]
+      'user.email' : ['', Validators.compose([Validators.required, Validators.minLength(4), Validators.maxLength(30)])],
+      'user.password': ['', Validators.compose([Validators.required, Validators.minLength(6) ])]
     });
   }
 
@@ -34,7 +34,7 @@ export class HomePage {
       }, err => {
         console.log(err);
         // DELETE THIS once server response is correct
-        this.navCtrl.setRoot(StatusPage)
+        // this.navCtrl.setRoot(StatusPage)
       });
   }
 }
