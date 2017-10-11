@@ -18,8 +18,21 @@ export class HomePage {
               public backend: FirebaseBackendProvider,
               private fb: FormBuilder) {
     this.authForm = this.fb.group({
-      'user.email' : ['', Validators.compose([Validators.required, Validators.minLength(4), Validators.maxLength(30)])],
-      'user.password': ['', Validators.compose([Validators.required, Validators.minLength(6) ])]
+      'user.email' : [
+        '',
+        Validators.compose(
+          [ Validators.required,
+            Validators.minLength(4),
+            Validators.maxLength(30)
+          ]
+        )],
+      'user.password': [
+        '',
+        Validators.compose(
+          [ Validators.required,
+            Validators.minLength(6)
+          ]
+        )]
     });
   }
 
