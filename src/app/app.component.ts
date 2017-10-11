@@ -16,18 +16,14 @@ export class MyApp {
 
   rootPage: any = HomePage;
 
-  pages: Array<{title: string, component: any}>;
+  pages = {};
 
   constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
     this.initializeApp();
 
     // used for an example of ngFor and navigation
-    this.pages = [
-      { title: 'Home', component: HomePage },
-      { title: 'Status', component: StatusPage },
-      { title: 'Limits', component: LimitsPage },
-    ];
-
+    this.pages['Sign out'] = HomePage;
+    this.pages['Status'] = StatusPage;
   }
 
   initializeApp() {
@@ -38,6 +34,6 @@ export class MyApp {
   }
 
   openPage(page) {
-    this.nav.setRoot(page.component);
+    this.nav.setPages([this.pages[page]]);
   }
 }

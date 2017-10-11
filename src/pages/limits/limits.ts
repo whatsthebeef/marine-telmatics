@@ -19,27 +19,29 @@ export class LimitsPage {
                private fb: FormBuilder
              ) {
     this.limitsForm = this.fb.group({
-      'boat.battwarningthreshold': [
+      'boat.battwarninghigh': [
         '',
         Validators.compose(
-          [ Validators.min( 11.7 ),
-            Validators.max( 14.8 )
+          [ Validators.min( 0.0 ),
+            Validators.max( 100.0 )
           ]
         )],
-      'boat.battalarmthreshold': [
+      'boat.battwarninglow': [
         '',
         Validators.compose(
-          [ Validators.required
+          [ 
+            Validators.min( 0.0 ),
+            Validators.max( 100.0 )
           ]
         )],
-      'boat.bilgepumpmarktime': [
+      'boat.bilgepumpfaulttime': [
         '',
         Validators.compose(
           [
           Validators.max( 60 )
           ]
         )],
-      'boat.geofencedradius': [
+      'boat.georadius': [
         '',
         Validators.compose(
           [ Validators.pattern(new RegExp("[0-9]+")) ]
@@ -54,7 +56,7 @@ export class LimitsPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad LimitsPage');
-    //this.boat = this.navParams.get('boat') || {};
+    this.boat = this.navParams.get('boat') || {};
   }
 
   setLimits(){
