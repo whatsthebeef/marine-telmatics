@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { StatusPage } from '../status/status';
 import { FirebaseBackendProvider } from '../../providers/firebase-backend/firebase-backend';
+import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 
 @IonicPage()
 @Component({
@@ -11,7 +12,7 @@ import { FirebaseBackendProvider } from '../../providers/firebase-backend/fireba
 export class RegisterPage {
 
   user = {};
-
+  registerForm : FormGroup;
   /*
   user = {
     "display_name" : "Jay Name",
@@ -29,8 +30,42 @@ export class RegisterPage {
 
   constructor( public navCtrl: NavController,
                public navParams: NavParams,
-               public backend: FirebaseBackendProvider
+               public backend: FirebaseBackendProvider,
+               private fb: FormBuilder
              ) {
+    this.registerForm = this.fb.group({
+      'user.email': [
+        '',
+        Validators.compose(
+          [ Validators.required ]
+        )],
+      'user.password': [
+        '',
+        Validators.compose(
+          [ Validators.required ]
+        )],
+      'user.confirmPassword': [
+        '',
+        Validators.compose(
+          [ Validators.required ]
+        )],
+      'user.first_name': [
+        '',
+        Validators.compose(
+          [ Validators.required ]
+        )],
+      'user.last_name': [
+        '',
+        Validators.compose(
+          [ Validators.required ]
+        )],
+      'user.mobile_number': [
+        '',
+        Validators.compose(
+          [ Validators.required ]
+        )]
+    });
+      
   }
 
   ionViewDidLoad() {

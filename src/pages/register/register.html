@@ -5,39 +5,63 @@
 </ion-header>
 
 <ion-content padding>
-  <form (ngSubmit)='register()'>
+  <form (ngSubmit)='register()' [formGroup]="registerForm">
     <ion-list inset>
       <ion-item>
         <ion-label>email</ion-label>
-        <ion-input type='text' [(ngModel)]='user.email' name='email'></ion-input>
+        <ion-input type='text'
+                   [(ngModel)]='user.email'
+                   [formControl]="registerForm.controls['user.email']"
+                   name='email'>
+        </ion-input>
       </ion-item>
       <ion-item>
         <ion-label>password</ion-label>
-        <ion-input type='password' [(ngModel)]='user.password' name='password'> </ion-input>
+        <ion-input type='password'
+                   [(ngModel)]='user.password'
+                   [formControl]="registerForm.controls['user.password']"
+                   name='password'>
+        </ion-input>
       </ion-item>
 
       <ion-item>
         <ion-label>confirm password</ion-label>
-        <ion-input type='password' [(ngModel)]='user.confirmPassword' name='passwordConfirm'> </ion-input>
+        <ion-input type='password'
+                   [(ngModel)]='user.confirmPassword'
+                   [formControl]="registerForm.controls['user.confirmPassword']"
+                   name='passwordConfirm'>
+        </ion-input>
       </ion-item>
 
       <ion-item>
         <ion-label>First Name</ion-label>
-        <ion-input type='text' [(ngModel)]='user.first_name' name='first_name'> </ion-input>
+        <ion-input type='text'
+                   [(ngModel)]='user.first_name'
+                   [formControl]="registerForm.controls['user.first_name']"
+                   name='first_name'>
+        </ion-input>
       </ion-item>
 
       <ion-item>
         <ion-label>Last Name</ion-label>
-        <ion-input type='text' [(ngModel)]='user.last_name' name='last_name'> </ion-input>
+        <ion-input type='text'
+                   [(ngModel)]='user.last_name'
+                   [formControl]="registerForm.controls['user.last_name']"
+                   name='last_name'>
+        </ion-input>
       </ion-item>
 
       <ion-item>
         <ion-label>Phone Number</ion-label>
-        <ion-input type='text' [(ngModel)]='user.mobile_number' name='mobile_number'> </ion-input>
+        <ion-input type='text'
+                   [(ngModel)]='user.mobile_number'
+                   [formControl]="registerForm.controls['user.mobile_number']"
+                   name='mobile_number'>
+        </ion-input>
       </ion-item>
 
     </ion-list>
 
-    <button ion-button>Register</button>
+    <button ion-button [disabled]='!registerForm.valid'>Register</button>
   </form>
 </ion-content>
