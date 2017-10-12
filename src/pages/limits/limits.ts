@@ -74,4 +74,14 @@ export class LimitsPage {
     });
   }
 
+  // TODO: DRY -> how to make this common to all pages?
+  clsExp(control:string){
+    return {
+      'hidden': !this.limitsForm.controls[control].touched ||
+        this.limitsForm.controls[control].valid,
+      'error-hint': !this.limitsForm.controls[control].valid &&
+        this.limitsForm.controls[control].touched
+    }
+  }
+
 }
