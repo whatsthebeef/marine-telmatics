@@ -38,7 +38,7 @@
     <button (click)='setLimits(boat)' ion-button small>Set Limits</button>
   </div>
   <br>
-  <button (click)='registerBoat()' ion-button>Register Boat</button>
+  <button (click)='registerBoat()' [hidden]='boats.length > 0' ion-button>Register Boat</button>
   <br>
   <div #map id='map'></div>
 </ion-content>

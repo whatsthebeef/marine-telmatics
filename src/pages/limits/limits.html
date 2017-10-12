@@ -14,36 +14,36 @@
       <ion-label>Battery High limit</ion-label>
       <ion-input type='number'
                  placeholder='0.0'
-                 [formControl]="limitsForm.controls['boat.battwarningthreshold']"
-                 [(ngModel)]='boat.battwarningthreshold'
-                 name='battwarningthreshold'>
+                 [formControl]="limitsForm.controls['boat.battwarninghigh']"
+                 [(ngModel)]='boat.battwarninghigh'
+                 name='battwarninghigh'>
       </ion-input>
     </ion-item>
     <ion-item>
       <ion-label>Battery Low limit</ion-label>
       <ion-input type='number'
                  placeholder='0.0'
-                 [(ngModel)]='boat.battalarmthreshold'
-                 [formControl]="limitsForm.controls['boat.battalarmthreshold']"
-                 name='battalarmthreshold'>
+                 [(ngModel)]='boat.battwarninglow'
+                 [formControl]="limitsForm.controls['boat.battwarninglow']"
+                 name='battwarninglow'>
       </ion-input>
     </ion-item>
     <ion-item>
-      <ion-label>Bilge Pump 1 Max On Time</ion-label>
+      <ion-label>Bilge Pump Fault Time</ion-label>
       <ion-input type='number'
                  value='60'
-                 [(ngModel)]='boat.bilgepumpmarktime'
-                 [formControl]="limitsForm.controls['boat.bilgepumpmarktime']"
-                 name='bilgepumpmarktime' >
+                 [(ngModel)]='boat.bilgepumpfaulttime'
+                 [formControl]="limitsForm.controls['boat.bilgepumpfaulttime']"
+                 name='bilgepumpfaulttime' >
       </ion-input>secs
     </ion-item>
     <ion-item>
-      <ion-label>Geo fence warn</ion-label>
+      <ion-label>Geo Radius</ion-label>
       <ion-input type='number'
                  placeholder='0'
-                 [(ngModel)]='boat.geofencedradius'
-                 [formControl]="limitsForm.controls['boat.geofencedradius']"
-                 name='geofencedradius' >
+                 [(ngModel)]='boat.georadius'
+                 [formControl]="limitsForm.controls['boat.georadius']"
+                 name='georadius' >
         feet
       </ion-input>
     </ion-item>
