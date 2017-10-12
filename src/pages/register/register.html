@@ -15,6 +15,7 @@
                    name='email'>
         </ion-input>
       </ion-item>
+      <div [validationMessage]="registerForm.controls['user.email']">Ensure the email format is correct</div>
       <ion-item>
         <ion-label>password</ion-label>
         <ion-input type='password'
@@ -23,15 +24,17 @@
                    name='password'>
         </ion-input>
       </ion-item>
+      <div [validationMessage]="registerForm.controls['user.password']">Ensure the password is 8 or more characters</div>
 
       <ion-item>
         <ion-label>confirm password</ion-label>
         <ion-input type='password'
                    [(ngModel)]='user.confirmPassword'
                    [formControl]="registerForm.controls['user.confirmPassword']"
-                   name='passwordConfirm'>
+                   name='confirmPassword'>
         </ion-input>
       </ion-item>
+      <div [validationMessage]="registerForm.controls['user.confirmPassword']"></div>
 
       <ion-item>
         <ion-label>First Name</ion-label>
@@ -41,6 +44,7 @@
                    name='first_name'>
         </ion-input>
       </ion-item>
+      <div [validationMessage]="registerForm.controls['user.first_name']">First name is required</div>
 
       <ion-item>
         <ion-label>Last Name</ion-label>
@@ -50,6 +54,7 @@
                    name='last_name'>
         </ion-input>
       </ion-item>
+      <div [validationMessage]="registerForm.controls['user.last_name']">Last name is required</div>
 
       <ion-item>
         <ion-label>Phone Number</ion-label>
@@ -59,6 +64,7 @@
                    name='mobile_number'>
         </ion-input>
       </ion-item>
+      <div [validationMessage]="registerForm.controls['user.mobile_number']"></div>
 
     </ion-list>
 

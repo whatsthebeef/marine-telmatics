@@ -8,49 +8,30 @@
   <form (ngSubmit)='signIn()' [formGroup]="authForm">
     <ion-grid>
       <ion-row>
-            <ion-col col-12>
-
-              <ion-item fixed>
-        <ion-label>email</ion-label>
-        <ion-input type='text'
-                   [formControl]="authForm.controls['user.email']"
-                   [(ngModel)]='user.email'
-                   name='email'
-                   required
-                   >
-        </ion-input>
-              </ion-item>
-              <ion-row>
-                <div [ngClass]="clsExp('user.email')">
-                  <span class="hint">
-                    Type your email
-                  </span>
-                  </div>
-                </ion-row>
-            </ion-col>
+        <ion-col col-12>
+          <ion-item fixed>
+            <ion-label>email</ion-label>
+            <ion-input type='text'
+              [formControl]="authForm.controls['user.email']"
+              [(ngModel)]='user.email'
+              name='email'>
+            </ion-input>
+          </ion-item>
+        </ion-col>
       </ion-row>
       <ion-row>
-        <ion-col col-6>
+        <ion-col col-12>
           <ion-item>
-        <ion-label>password</ion-label>
-        <ion-input type='password'
-                   [formControl]="authForm.controls['user.password']"
-                   [(ngModel)]='user.password'
-                   name='password'
-                   >
-        </ion-input>
+            <ion-label>password</ion-label>
+            <ion-input type='password'
+              [formControl]="authForm.controls['user.password']"
+              [(ngModel)]='user.password'
+              name='password'>
+            </ion-input>
           </ion-item>
-          <ion-row>
-                <div [ngClass]="clsExp('user.password')">
-                  <span class="hint">
-                    The password must be 6 characters
-                  </span>
-                  </div>
-                </ion-row>
         </ion-col>
-        </ion-row>
-
-      </ion-grid>
+      </ion-row>
+    </ion-grid>
     <button ion-button type='submit' [disabled]='!authForm.valid'>Sign In</button>
   </form>
   <button ion-button color='secondary'

@@ -8,6 +8,7 @@ import { RegisterPageModule } from '../pages/register/register.module';
 import { StatusPageModule } from '../pages/status/status.module';
 import { LimitsPageModule } from '../pages/limits/limits.module';
 import { RegisterBoatPageModule } from '../pages/register-boat/register-boat.module';
+import { DirectivesModule } from '../directives/directives.module';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -17,7 +18,8 @@ import { HttpClientModule } from '@angular/common/http';
 @NgModule({
   declarations: [
     MyApp,
-    HomePage
+    HomePage, 
+
   ],
   imports: [
     BrowserModule,
@@ -26,6 +28,7 @@ import { HttpClientModule } from '@angular/common/http';
     LimitsPageModule, 
     RegisterPageModule,
     RegisterBoatPageModule,
+    DirectivesModule,
     HttpClientModule
   ],
   bootstrap: [IonicApp],

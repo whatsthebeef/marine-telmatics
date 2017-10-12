@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, Events } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Events, AlertController } from 'ionic-angular';
 import { FirebaseBackendProvider } from '../../providers/firebase-backend/firebase-backend';
 
 @IonicPage()
@@ -15,12 +15,12 @@ export class RegisterBoatPage {
   constructor( public navCtrl: NavController,
     public navParams: NavParams,
     public backend: FirebaseBackendProvider, 
-    public events: Events
+    public events: Events, 
+    public alertCtrl: AlertController
   ) {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad RegisterBoatPage');
     this.userId = this.navParams.get('user_id'); 
     if(!this.userId) {
       throw Error();
@@ -33,10 +33,13 @@ export class RegisterBoatPage {
       this.navCtrl.pop();
     }, err => {
       console.error(err);
-      // TODO DELETE THIS once server response is correct
-      // this.events.publish('boat:registered', this.boat);
-      // this.navCtrl.pop();
-    });
-  }
+      const alert = this.alertCtrl.create({
+        title: 'Boat Registration Failed',
+        subTitle: 'Ensure you haven\'t entered reasonable values and try again',
+        buttons: ['Dismiss']
+      });
+      alert.present();
+  });
+}
 
 }

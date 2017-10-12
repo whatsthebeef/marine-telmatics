@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { StatusPage } from '../status/status';
 import { FirebaseBackendProvider } from '../../providers/firebase-backend/firebase-backend';
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
+import { ValidationMessageDirective } from '../../directives/validation-message/validation-message';
 
 @IonicPage()
 @Component({
@@ -31,23 +32,33 @@ export class RegisterPage {
   constructor( public navCtrl: NavController,
                public navParams: NavParams,
                public backend: FirebaseBackendProvider,
+               public alertCtrl: AlertController,
                private fb: FormBuilder
              ) {
     this.registerForm = this.fb.group({
-      'user.email': [
-        '',
-        Validators.compose(
-          [ Validators.required ]
-        )],
+      'user.email': [ 
+        '', 
+        Validators.compose( 
+          [ 
+            Validators.required, 
+            Validators.email 
+          ]
+      )],
       'user.password': [
         '',
         Validators.compose(
-          [ Validators.required ]
+          [ 
+            Validators.required,  
+            Validators.minLength(8)
+          ]
         )],
       'user.confirmPassword': [
         '',
         Validators.compose(
-          [ Validators.required ]
+          [ 
+            Validators.required, 
+            Validators.minLength(8)
+          ]
         )],
       'user.first_name': [
         '',
@@ -62,7 +73,7 @@ export class RegisterPage {
       'user.mobile_number': [
         '',
         Validators.compose(
-          [ Validators.required ]
+          []
         )]
     });
       
@@ -78,8 +89,12 @@ export class RegisterPage {
         this.navCtrl.setRoot(StatusPage, result)
       }, err => {
         console.log(err);
-        // DELETE THIS once server response is correct
-        // this.navCtrl.setRoot(StatusPage)
+        const alert = this.alertCtrl.create({
+          title: 'Registration Failed',
+          subTitle: 'Ensure you haven\'t already used the email and the passwords match',
+          buttons: ['Dismiss']
+        });
+        alert.present();
       });
   }
 

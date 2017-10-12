@@ -13,73 +13,58 @@
     <ion-item>
       <ion-label>Battery High limit</ion-label>
       <ion-input type='number'
-                 placeholder='0.0'
                  [formControl]="limitsForm.controls['boat.battwarninghigh']"
                  [(ngModel)]='boat.battwarninghigh'
                  name='battwarninghigh'>
       </ion-input>
     </ion-item>
-    <div [ngClass]="clsExp('boat.battwarninghigh')">
-      <span class="hint">
+    <div [validationMessage]="limitsForm.controls['user.battwarninghigh']">
         The value must be between 0 and 100
-      </span>
     </div>
     <ion-item>
       <ion-label>Battery Low limit</ion-label>
       <ion-input type='number'
-                 placeholder='0.0'
                  [(ngModel)]='boat.battwarninglow'
                  [formControl]="limitsForm.controls['boat.battwarninglow']"
                  name='battwarninglow'>
       </ion-input>
     </ion-item>
-    <div [ngClass]="clsExp('boat.battwarninglow')">
-      <span class="hint">
+    <div [validationMessage]="limitsForm.controls['boat.battwarninglow']">
         The value must be between 0 and 100
-      </span>
     </div>
     <ion-item>
       <ion-label>Bilge Pump Fault Time</ion-label>
       <ion-input type='number'
-                 value='60'
                  [(ngModel)]='boat.bilgepumpfaulttime'
                  [formControl]="limitsForm.controls['boat.bilgepumpfaulttime']"
                  name='bilgepumpfaulttime' >
       </ion-input>secs
     </ion-item>
-    <div [ngClass]="clsExp('boat.bilgepumpfaulttime')">
-      <span class="hint">
-        Maximum 60
-      </span>
+    <div [validationMessage]="limitsForm.controls['boat.bilgepumpfaulttime']">
+      Must me a number
     </div>
     <ion-item>
       <ion-label>Geo Radius</ion-label>
       <ion-input type='number'
-                 placeholder='0'
                  [(ngModel)]='boat.georadius'
                  [formControl]="limitsForm.controls['boat.georadius']"
                  name='georadius' >
         feet
       </ion-input>
     </ion-item>
-    <div [ngClass]="clsExp('boat.georadius')">
-      <span class="hint">
-        Distance in feet/meter
-      </span>
+    <div [validationMessage]="limitsForm.controls['boat.georadius']">
+      Must me a number
     </div>
-    <ion-item>
+    <ion-item>  
       <ion-label>Geo fence alarm</ion-label>
       <ion-input type='number'
-                 placeholder='0'
                  [(ngModel)]='boat.geofencedfault'
                  [formControl]="limitsForm.controls['boat.geofencedfault']"
                  name='geofencedfault' >
       </ion-input>
     </ion-item>
-    <div [ngClass]="clsExp('boat.geofencedfault')">
-      <span class="hint">
-        Distance in feet/meter
-      </span>
+    <div [validationMessage]="limitsForm.controls['boat.geofencedfault']">
+      Must me a number
     </div>
     <button ion-button [disabled]='!limitsForm.valid'>Submit</button>
   </form>

@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, Events } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Events, AlertController } from 'ionic-angular';
 import { FirebaseBackendProvider } from '../../providers/firebase-backend/firebase-backend';
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
+import { ValidationMessageDirective } from '../../directives/validation-message/validation-message';
 
 @IonicPage()
 @Component({
@@ -13,11 +14,12 @@ export class LimitsPage {
   boat = {};
   limitsForm : FormGroup;
   constructor( public navCtrl: NavController,
-               public navParams: NavParams,
-               public backend: FirebaseBackendProvider, 
-               public events: Events,
-               private fb: FormBuilder
-             ) {
+    public navParams: NavParams,
+    public backend: FirebaseBackendProvider, 
+    public events: Events,
+    public alertCtrl: AlertController,
+    private fb: FormBuilder
+  ) {
     this.limitsForm = this.fb.group({
       'boat.battwarninghigh': [
         '',
@@ -38,7 +40,6 @@ export class LimitsPage {
         '',
         Validators.compose(
           [
-          Validators.max( 60 )
           ]
         )],
       'boat.georadius': [
@@ -68,20 +69,13 @@ export class LimitsPage {
       this.navCtrl.pop();
     }, err => {
       console.log(err);
-      // TODO Remove
-      // this.events.publish('boat:limits_set', this.boat);
-      // this.navCtrl.pop();
+      const alert = this.alertCtrl.create({
+        title: 'Update Failed',
+        subTitle: 'Failed to update the threshold values, please check all values are reasonable and try again',
+        buttons: ['Dismiss']
+      });
+      alert.present()
     });
-  }
-
-  // TODO: DRY -> how to make this common to all pages?
-  clsExp(control:string){
-    return {
-      'hidden': !this.limitsForm.controls[control].touched ||
-        this.limitsForm.controls[control].valid,
-      'error-hint': !this.limitsForm.controls[control].valid &&
-        this.limitsForm.controls[control].touched
-    }
   }
 
 }
