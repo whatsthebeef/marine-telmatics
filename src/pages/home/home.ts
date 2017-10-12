@@ -46,8 +46,17 @@ export class HomePage {
         this.navCtrl.setRoot(StatusPage, result)
       }, err => {
         console.log(err);
-        // DELETE THIS once server response is correct
-        // this.navCtrl.setRoot(StatusPage)
+ 
       });
+  }
+
+  // TODO: DRY -> how to make this common to all pages?
+  clsExp(control:string){
+    return {
+      'hidden': !this.authForm.controls[control].touched ||
+        this.authForm.controls[control].valid,
+      'error-hint': !this.authForm.controls[control].valid &&
+        this.authForm.controls[control].touched
+    }
   }
 }
