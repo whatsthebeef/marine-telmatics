@@ -18,7 +18,7 @@
                  name='battwarninghigh'>
       </ion-input>
     </ion-item>
-    <div [validationMessage]="limitsForm.controls['user.battwarninghigh']">
+    <div [validationMessage]="limitsForm.controls['boat.battwarninghigh']">
         The value must be between 0 and 100
     </div>
     <ion-item>
@@ -41,7 +41,7 @@
       </ion-input>secs
     </ion-item>
     <div [validationMessage]="limitsForm.controls['boat.bilgepumpfaulttime']">
-      Must me a number
+      Must be a number
     </div>
     <ion-item>
       <ion-label>Geo Radius</ion-label>
@@ -53,9 +53,9 @@
       </ion-input>
     </ion-item>
     <div [validationMessage]="limitsForm.controls['boat.georadius']">
-      Must me a number
+      Must be a number
     </div>
-    <ion-item>  
+    <ion-item>
       <ion-label>Geo fence alarm</ion-label>
       <ion-input type='number'
                  [(ngModel)]='boat.geofencedfault'
