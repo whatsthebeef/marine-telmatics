@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, AlertController } from 'ionic-angular';
+import { NavController, AlertController, LoadingController } from 'ionic-angular';
 import { RegisterPage } from '../register/register';
 import { StatusPage } from '../status/status';
 import { ValidationMessageDirective } from '../../directives/validation-message/validation-message';
@@ -17,30 +17,12 @@ export class HomePage {
   authForm : FormGroup;
   constructor(public navCtrl: NavController,
               public backend: FirebaseBackendProvider,
+              public loadingCtrl: LoadingController, 
               public alertCtrl: AlertController,
               private fb: FormBuilder) {
     this.authForm = this.fb.group({
-      'user.email' : [
-        '',
-        Validators.compose(
-          [ 
-            /*
-            Validators.required,
-            Validators.minLength(8),
-            Validators.email
-            */
-          ]
-        )],
-      'user.password': [
-        '',
-        Validators.compose(
-          [ 
-            /*
-            Validators.required,
-            Validators.minLength(8)
-            */
-          ]
-        )]
+      'user.email' : [ '', Validators.compose( [] )], 
+      'user.password': [ '', Validators.compose( [] )]
     });
   }
 
@@ -49,10 +31,15 @@ export class HomePage {
   }
 
   signIn() {
-    this.backend.login(this.user)
-      .then(result => {
+    const loading = this.loadingCtrl.create({
+      content: 'Logging in. Please wait...'
+    });
+    loading.present();
+    this.backend.login(this.user).then(result => {
+        loading.dismiss();
         this.navCtrl.setRoot(StatusPage, result)
       }, err => {
+        loading.dismiss();
         console.log(err);
         const alert = this.alertCtrl.create({
           title: 'Login Failed',

@@ -1,0 +1,8 @@
+<ion-segment col-12 [(ngModel)]='_item' (ngModelChange)='onSelect($event)'>
+  <ion-segment-button value='1'>
+    {{label}} On
+  </ion-segment-button>
+  <ion-segment-button value='0'>
+    {{label}} Off
+  </ion-segment-button>
+</ion-segment>

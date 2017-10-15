@@ -30,7 +30,15 @@ export class FirebaseBackendProvider {
     return this.get('/boat?imei='+imei);
   }
 
+  user( id ) {
+    return this.get('/user?id='+id);
+  }
+
   setLimits( boat ){
+    return this.post('/boat', boat);
+  }
+
+  setMonitoredItems( boat ){
     return this.post('/boat', boat);
   }
   

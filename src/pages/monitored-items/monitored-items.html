@@ -1,0 +1,16 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name='menu'></ion-icon>
+    </button>
+    <ion-title>Monitored Items</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <monitored-item-segment [label]='"Ignition"' [item]='boat.ignitionmonitoring' [itemName]='"ignitionmonitoring"'></monitored-item-segment>
+  <monitored-item-segment [label]='"Bilge Pump"' [item]='boat.bilgemonitoring' [itemName]='"bilgemonitoring"'></monitored-item-segment>
+  <monitored-item-segment [label]='"Shore Power"' [item]='boat.shorepower' [itemName]='"shorepower"'></monitored-item-segment>
+  <monitored-item-segment [label]='"Geo Position"' [item]='boat.geomonitoring' [itemName]='"geomonitoring"'></monitored-item-segment>
+  <monitored-item-segment [label]='"Vibration"' [item]='boat.vbatmonitoring' [itemName]='"vbatmonitoring"'></monitored-item-segment>
+</ion-content>

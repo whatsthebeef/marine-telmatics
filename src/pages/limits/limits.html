@@ -55,17 +55,8 @@
     <div [validationMessage]="limitsForm.controls['boat.georadius']">
       Must me a number
     </div>
-    <ion-item>  
-      <ion-label>Geo fence alarm</ion-label>
-      <ion-input type='number'
-                 [(ngModel)]='boat.geofencedfault'
-                 [formControl]="limitsForm.controls['boat.geofencedfault']"
-                 name='geofencedfault' >
-      </ion-input>
+    <ion-item>
+      <button ion-button [disabled]='!limitsForm.valid'>Submit</button>
     </ion-item>
-    <div [validationMessage]="limitsForm.controls['boat.geofencedfault']">
-      Must me a number
-    </div>
-    <button ion-button [disabled]='!limitsForm.valid'>Submit</button>
   </form>
 </ion-content>

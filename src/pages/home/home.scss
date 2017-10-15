@@ -1,5 +1,13 @@
 page-home {
-    .hidden{
-        display: none;
+  .hidden{
+    display: none;
+  }
+  .item-md.item-block .item-inner {
+    padding-right: 8px;
+  }
+  .button-row {
+    .item-md.item-block .item-inner {
+      border-bottom: none;
     }
+  }
 }

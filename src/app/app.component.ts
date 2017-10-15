@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { Nav, Platform } from 'ionic-angular';
+import { Nav, Platform, Events } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
@@ -15,10 +15,16 @@ export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
   rootPage: any = HomePage;
+  statusPage: any = StatusPage;
 
   pages = {};
 
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
+  constructor(
+    public platform: Platform, 
+    public statusBar: StatusBar, 
+    public events: Events,
+    public splashScreen: SplashScreen) {
+
     this.initializeApp();
 
     // used for an example of ngFor and navigation
@@ -35,5 +41,10 @@ export class MyApp {
 
   openPage(page) {
     this.nav.setPages([this.pages[page]]);
+  }
+
+  registerBoat() {
+    this.events.publish('boat:register_boat');
+    this.statusPage.registerBoat();
   }
 }

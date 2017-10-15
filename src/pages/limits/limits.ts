@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, Events, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Events, AlertController, LoadingController } from 'ionic-angular';
 import { FirebaseBackendProvider } from '../../providers/firebase-backend/firebase-backend';
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { ValidationMessageDirective } from '../../directives/validation-message/validation-message';
@@ -16,6 +16,7 @@ export class LimitsPage {
   constructor( public navCtrl: NavController,
     public navParams: NavParams,
     public backend: FirebaseBackendProvider, 
+    public loadingCtrl: LoadingController, 
     public events: Events,
     public alertCtrl: AlertController,
     private fb: FormBuilder
@@ -61,7 +62,12 @@ export class LimitsPage {
   }
 
   setLimits(){
+    const loading = this.loadingCtrl.create({
+      content: 'Logging in. Please wait...'
+    });
+    loading.present();
     this.backend.setLimits(this.boat).then(changes => {
+      loading.dismiss();
       for(let key in changes) {
         this.boat[key] = changes[key];
       }
@@ -69,6 +75,7 @@ export class LimitsPage {
       this.navCtrl.pop();
     }, err => {
       console.log(err);
+      loading.dismiss();
       const alert = this.alertCtrl.create({
         title: 'Update Failed',
         subTitle: 'Failed to update the threshold values, please check all values are reasonable and try again',
