@@ -3,60 +3,58 @@
     <button ion-button menuToggle>
       <ion-icon name='menu'></ion-icon>
     </button>
-
     <ion-title>Limits</ion-title>
   </ion-navbar>
 </ion-header>
-
 <ion-content padding>
   <form (ngSubmit)='setLimits()' [formGroup]="limitsForm">
     <ion-item>
-      <ion-label>Battery High limit</ion-label>
+      <ion-label>Battery voltage upper limit</ion-label>
       <ion-input type='number'
-                 [formControl]="limitsForm.controls['boat.battwarninghigh']"
-                 [(ngModel)]='boat.battwarninghigh'
-                 name='battwarninghigh'>
+        [formControl]="limitsForm.controls['boat.battwarninghigh']"
+        [(ngModel)]='boat.battwarninghigh'
+        name='battwarninghigh'>
       </ion-input>
     </ion-item>
-    <div [validationMessage]="limitsForm.controls['boat.battwarninghigh']">
-        The value must be between 0 and 100
-    </div>
+    <p [checked]='checked' [validationMessage]="limitsForm.controls['boat.battwarninghigh']">
+      The value must be between 0 and 100
+    </p>
     <ion-item>
-      <ion-label>Battery Low limit</ion-label>
+      <ion-label>Battery voltage low limit</ion-label>
       <ion-input type='number'
-                 [(ngModel)]='boat.battwarninglow'
-                 [formControl]="limitsForm.controls['boat.battwarninglow']"
-                 name='battwarninglow'>
+        [(ngModel)]='boat.battwarninglow'
+        [formControl]="limitsForm.controls['boat.battwarninglow']"
+        name='battwarninglow'>
       </ion-input>
     </ion-item>
-    <div [validationMessage]="limitsForm.controls['boat.battwarninglow']">
-        The value must be between 0 and 100
-    </div>
+    <p [checked]='checked' [validationMessage]="limitsForm.controls['boat.battwarninglow']">
+      The value must be between 0 and 100
+    </p>
     <ion-item>
-      <ion-label>Bilge Pump Fault Time</ion-label>
+      <ion-label>Bilge pump fault time (hrs)</ion-label>
       <ion-input type='number'
-                 [(ngModel)]='boat.bilgepumpfaulttime'
-                 [formControl]="limitsForm.controls['boat.bilgepumpfaulttime']"
-                 name='bilgepumpfaulttime' >
+        [(ngModel)]='boat.bilgepumpfaulttime'
+        [formControl]="limitsForm.controls['boat.bilgepumpfaulttime']"
+        name='bilgepumpfaulttime' >
       </ion-input>secs
     </ion-item>
-    <div [validationMessage]="limitsForm.controls['boat.bilgepumpfaulttime']">
+    <p [checked]='checked' [validationMessage]="limitsForm.controls['boat.bilgepumpfaulttime']">
       Must be a number
-    </div>
+    </p>
     <ion-item>
-      <ion-label>Geo Radius</ion-label>
+      <ion-label>Geo radius (feet)</ion-label>
       <ion-input type='number'
-                 [(ngModel)]='boat.georadius'
-                 [formControl]="limitsForm.controls['boat.georadius']"
-                 name='georadius' >
+        [(ngModel)]='boat.georadius'
+        [formControl]="limitsForm.controls['boat.georadius']"
+        name='georadius' >
         feet
       </ion-input>
     </ion-item>
-    <div [validationMessage]="limitsForm.controls['boat.georadius']">
+    <p [checked]='checked' [validationMessage]="limitsForm.controls['boat.georadius']">
       Must be a number
-    </div>
-    <ion-item>
-      <button ion-button [disabled]='!limitsForm.valid'>Submit</button>
+    </p>
+    <ion-item class='button-item'>
+      <button ion-button>Submit</button>
     </ion-item>
   </form>
 </ion-content>

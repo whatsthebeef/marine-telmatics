@@ -21,6 +21,19 @@ export class StatusPage {
   interval: any; 
   pollPeriod = 60000; 
   showMap = false; 
+  registerBoatCallback = () => {
+    this.registerBoat();
+  };
+  registeredCallback = boat => {
+    this.boats.push(boat);
+  };
+  limitsSet = boat => {
+    this.boats.forEach((b, i) => {
+      if(b.IMEI === boat.IMEI) {
+        this.boats[i] = b;
+      }
+    });
+  };
 
   constructor( public navCtrl: NavController,
     public navParams: NavParams,
@@ -31,19 +44,9 @@ export class StatusPage {
   }
 
   ionViewDidLoad() {
-    this.events.subscribe('boat:register_boat', () => {
-      this.registerBoat();
-    });
-    this.events.subscribe('boat:registered', boat => {
-      this.boats.push(boat);
-    });
-    this.events.subscribe('boat:limits_set', boat => {
-      this.boats.forEach((b, i) => {
-        if(b.IMEI === boat.IMEI) {
-          this.boats[i] = b;
-        }
-      });
-    });
+    this.events.subscribe('boat:register_boat', this.registerBoatCallback);
+    this.events.subscribe('boat:registered', this.registeredCallback);
+    this.events.subscribe('boat:limits_set', this.limitsSet);
     this.userId = this.navParams.get('user_id') || this.userId; 
     this.loadData(true);
     this.interval = setInterval(() => {
@@ -52,7 +55,14 @@ export class StatusPage {
   }
 
   ionViewWillLeave() {
+    this.events.unsubscribe('boat:register_boat', this.registerBoatCallback);
+    this.events.unsubscribe('boat:registered', this.registeredCallback);
+    this.events.unsubscribe('boat:limits_set', this.limitsSet);
     clearInterval(this.interval);
+  }
+
+  ionViewDidEnter() {
+    this.loadData(false);
   }
 
   setLimits(boat) {
@@ -73,7 +83,7 @@ export class StatusPage {
 
     let mapOptions = {
       center: center, 
-      zoom: 5, 
+      zoom: 15, 
       mapTypeId: google.maps.MapTypeId.ROADMAP
     }
 
@@ -121,7 +131,9 @@ export class StatusPage {
             alert.present();
           }
         } else {
-          this.initMap();
+          if(this.boats.length > 0) {
+            this.initMap();
+          }
         }
       });
   }

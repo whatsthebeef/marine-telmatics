@@ -11,40 +11,49 @@ import { MonitoredItemSegment } from './monitored-item-segment.component';
 export class MonitoredItemsPage {
 
   boat = {};
+  callback = (name, value, label) => {
+    const loading = this.loadingCtrl.create({
+      content: 'Configuring monitored item. Please wait...'
+    });
+    loading.present();
+    let item = {IMEI:this.boat['IMEI']};
+    item[name] = value;
+    this.backend.setMonitoredItems(item).then(result => {
+      loading.dismiss();
+      console.log(item);
+      this.boat[name] = value;
+    }, err => {
+      console.log(err);
+      loading.dismiss();
+      this.boat[name] === 0 ? this.boat[name] = 1 : this.boat[name] = 0;
+      const alert = this.alertCtrl.create({
+        title: 'Couldn\'t set ' + label,
+        subTitle: 'Failed to update the ' + label + ', please check your internet connection and try again',
+        buttons: ['Dismiss']
+      });
+      alert.present()
+    });
+  };
+
   constructor( public navCtrl: NavController,
     public navParams: NavParams,
     public backend: FirebaseBackendProvider, 
     public events: Events,
     public loadingCtrl: LoadingController,
     public alertCtrl: AlertController
-  ) {}
-
-  ionViewDidLoad() {
-    this.boat = this.navParams.get('boat') || {};
-    this.events.subscribe('boat:monitored_item_changed', (name, value, label) => {
-      const loading = this.loadingCtrl.create({
-        content: 'Logging in. Please wait...'
-      });
-      loading.present();
-      let item = {};
-      item[name] = value;
-      this.backend.setMonitoredItems(item).then(result => {
-        loading.dismiss();
-        console.log(item);
-        this.boat[name] = value;
-      }, err => {
-        console.log(err);
-        loading.dismiss();
-        this.boat[name] === 0 ? this.boat[name] = 1 : this.boat[name] = 0;
-        const alert = this.alertCtrl.create({
-          title: 'Couldn\'t set ' + label,
-          subTitle: 'Failed to update the ' + label + ', please check your internet connection and try again',
-          buttons: ['Dismiss']
-        });
-        alert.present()
-      });
-    });
+  ) {
   }
 
+  ionViewDidLoad() {
+    this.boat = this.navParams.get('boat');
+    if(!this.boat) {
+      throw Error();
+    }
+    this.events.subscribe('boat:monitored_item_changed', this.callback);
+  }
+
+  ionViewDidLeave() {
+    this.events.unsubscribe('boat:monitored_item_changed', this.callback);
+  }
 
 }

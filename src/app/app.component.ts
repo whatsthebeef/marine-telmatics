@@ -18,6 +18,7 @@ export class MyApp {
   statusPage: any = StatusPage;
 
   pages = {};
+  registerBoatDisabled = true;
 
   constructor(
     public platform: Platform, 
@@ -45,6 +46,5 @@ export class MyApp {
 
   registerBoat() {
     this.events.publish('boat:register_boat');
-    this.statusPage.registerBoat();
   }
 }

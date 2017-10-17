@@ -13,6 +13,8 @@ export class LimitsPage {
 
   boat = {};
   limitsForm : FormGroup;
+  checked = false;
+
   constructor( public navCtrl: NavController,
     public navParams: NavParams,
     public backend: FirebaseBackendProvider, 
@@ -59,15 +61,22 @@ export class LimitsPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad LimitsPage');
     this.boat = this.navParams.get('boat') || {};
+    this.limitsForm.valueChanges.subscribe(data => {
+      this.checked = false;
+    })
   }
 
   setLimits(){
+    if(!this.validate()) {
+      return;  
+    }
     const loading = this.loadingCtrl.create({
-      content: 'Logging in. Please wait...'
+      content: 'Setting limits. Please wait...'
     });
     loading.present();
     this.backend.setLimits(this.boat).then(changes => {
       loading.dismiss();
+      this.checked = false; 
       for(let key in changes) {
         this.boat[key] = changes[key];
       }
@@ -83,6 +92,15 @@ export class LimitsPage {
       });
       alert.present()
     });
+  }
+
+  validate() {
+    if(this.limitsForm.valid) {
+      return true;
+    } else {
+      this.checked = true; 
+      return false;
+    }
   }
 
 }

@@ -5,48 +5,70 @@
 </ion-header>
 
 <ion-content padding>
-  <form (ngSubmit)='registerBoat()'>
+  <form (ngSubmit)='registerBoat()' [formGroup]='registerBoatForm'>
     <ion-list inset>
       <ion-item>
         <ion-label>IMEI</ion-label>
-        <ion-input type='text' [(ngModel)]='boat.IMEI' name='IMEI'></ion-input>
+        <ion-input type='number' 
+          [formControl]='registerBoatForm.controls["boat.IMEI"]'
+          [(ngModel)]='boat.IMEI' name='IMEI'></ion-input>
       </ion-item>
+      <p [checked]='checked' [validationMessage]="registerBoatForm.controls['boat.IMEI']">An IMEI number is required</p>
       <ion-item>
         <ion-label>Boat name</ion-label>
-        <ion-input type='text' [(ngModel)]='boat.name' name='name'> </ion-input>
+        <ion-input type='text' [(ngModel)]='boat.name' 
+          [formControl]='registerBoatForm.controls["boat.name"]'
+          name='name'> </ion-input>
       </ion-item>
+      <p [checked]='checked' [validationMessage]="registerBoatForm.controls['boat.name']">A name is required</p>
       <ion-item>
         <ion-label>Marina</ion-label>
-        <ion-input type='text' [(ngModel)]='boat.marina' name='marina'>
+        <ion-input type='text' 
+          [formControl]="registerBoatForm.controls['boat.marina']"
+          [(ngModel)]='boat.marina' name='marina'>
         </ion-input>
       </ion-item>
       <ion-item>
         <ion-label>Boat type</ion-label>
-        <ion-input type='text'  [(ngModel)]='boat.type' name='type'></ion-input>
+        <ion-input type='text'  [(ngModel)]='boat.type' 
+          [formControl]="registerBoatForm.controls['boat.type']"
+          name='type'></ion-input>
       </ion-item>
       <ion-item>
         <ion-label>Boat model</ion-label>
-        <ion-input type='text'  [(ngModel)]='boat.model' name='model'></ion-input>
+        <ion-input type='text' [(ngModel)]='boat.model' 
+          [formControl]="registerBoatForm.controls['boat.model']"
+          name='model'></ion-input>
       </ion-item>
       <ion-item>
         <ion-label>Manufacturer</ion-label>
-        <ion-input type='text' [(ngModel)]='boat.manufacturer' name='manufacturer'></ion-input>
+        <ion-input type='text' [(ngModel)]='boat.manufacturer' 
+          [formControl]="registerBoatForm.controls['boat.manufacturer']"
+          name='manufacturer'></ion-input>
       </ion-item>
       <ion-item>
         <ion-label>Boat length</ion-label>
-        <ion-input type='text' [(ngModel)]='boat.length' name='length'></ion-input>
+        <ion-input type='text' 
+          [formControl]="registerBoatForm.controls['boat.length']"
+          [(ngModel)]='boat.length' name='length'></ion-input>
       </ion-item>
       <ion-item>
         <ion-label>Boat beam</ion-label>
-        <ion-input type='text' [(ngModel)]='boat.beam' name='beam'></ion-input>
+        <ion-input type='text' 
+          [formControl]="registerBoatForm.controls['boat.beam']"
+          [(ngModel)]='boat.beam' name='beam'></ion-input>
       </ion-item>
       <ion-item>
         <ion-label>Boat depth</ion-label>
-        <ion-input type='text' [(ngModel)]='boat.depth' name='depth'></ion-input>
+        <ion-input type='text' 
+          [formControl]="registerBoatForm.controls['boat.depth']"
+          [(ngModel)]='boat.depth' name='depth'></ion-input>
       </ion-item>
       <ion-item>
         <ion-label>Location contact number</ion-label>
-        <ion-input type='text' [(ngModel)]='boat.locationcontactnumber' name='locationcontactnumber'></ion-input>
+        <ion-input type='text' [(ngModel)]='boat.locationcontactnumber' 
+          [formControl]="registerBoatForm.controls['boat.locationcontactnumber']"
+          name='locationcontactnumber'></ion-input>
       </ion-item>
     </ion-list>
 

@@ -5,37 +5,35 @@
 </ion-header>
 
 <ion-content padding>
-  <form (ngSubmit)='register()' [formGroup]="registerForm">
+  <form (ngSubmit)='register()' [formGroup]='registerForm'>
     <ion-list inset>
       <ion-item>
-        <ion-label>email</ion-label>
+        <ion-label>Email</ion-label>
         <ion-input type='text'
                    [(ngModel)]='user.email'
-                   [formControl]="registerForm.controls['user.email']"
+                   [formControl]='registerForm.controls["user.email"]'
                    name='email'>
         </ion-input>
       </ion-item>
-      <div [validationMessage]="registerForm.controls['user.email']">Ensure the email format is correct</div>
+      <p [checked]='checked' [validationMessage]="registerForm.controls['user.email']">Ensure the email format is correct</p>
       <ion-item>
-        <ion-label>password</ion-label>
+        <ion-label>Password</ion-label>
         <ion-input type='password'
                    [(ngModel)]='user.password'
                    [formControl]="registerForm.controls['user.password']"
                    name='password'>
         </ion-input>
       </ion-item>
-      <div [validationMessage]="registerForm.controls['user.password']">Ensure the password is 8 or more characters</div>
-
+      <p [checked]='checked' [validationMessage]="registerForm.controls['user.password']">Ensure the password is 8 or more characters</p>
       <ion-item>
-        <ion-label>confirm password</ion-label>
+        <ion-label>Confirm password</ion-label>
         <ion-input type='password'
                    [(ngModel)]='user.confirmPassword'
                    [formControl]="registerForm.controls['user.confirmPassword']"
                    name='confirmPassword'>
         </ion-input>
       </ion-item>
-      <div [validationMessage]="registerForm.controls['user.confirmPassword']"></div>
-
+      <p [checked]='checked' [validationMessage]="registerForm.controls['user.confirmPassword']">Ensure the password is 8 or more characters</p>
       <ion-item>
         <ion-label>First Name</ion-label>
         <ion-input type='text'
@@ -44,8 +42,7 @@
                    name='first_name'>
         </ion-input>
       </ion-item>
-      <div [validationMessage]="registerForm.controls['user.first_name']">First name is required</div>
-
+      <p [checked]='checked' [validationMessage]="registerForm.controls['user.first_name']">First name is required</p>
       <ion-item>
         <ion-label>Last Name</ion-label>
         <ion-input type='text'
@@ -54,8 +51,7 @@
                    name='last_name'>
         </ion-input>
       </ion-item>
-      <div [validationMessage]="registerForm.controls['user.last_name']">Last name is required</div>
-
+      <p [checked]='checked' [validationMessage]="registerForm.controls['user.last_name']">Last name is required</p>
       <ion-item>
         <ion-label>Phone Number</ion-label>
         <ion-input type='text'
@@ -64,10 +60,8 @@
                    name='mobile_number'>
         </ion-input>
       </ion-item>
-      <div [validationMessage]="registerForm.controls['user.mobile_number']"></div>
-
+      <p [checked]='checked' [validationMessage]="registerForm.controls['user.mobile_number']"></p>
+      <button ion-button>Register</button>
     </ion-list>
-
-    <button ion-button [disabled]='!registerForm.valid'>Register</button>
   </form>
 </ion-content>

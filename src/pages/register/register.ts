@@ -14,6 +14,7 @@ export class RegisterPage {
 
   user = {};
   registerForm : FormGroup;
+  checked = false;
 
   constructor( public navCtrl: NavController,
                public navParams: NavParams,
@@ -28,17 +29,22 @@ export class RegisterPage {
       'user.confirmPassword': [ '', Validators.compose( [ Validators.required, Validators.minLength(8) ])],
       'user.first_name': [ '', Validators.compose( [ Validators.required ])],
       'user.last_name': [ '', Validators.compose( [ Validators.required ])],
-      'user.mobile_number': [ '', Validators.compose( [])]
+      'user.mobile_number': [ '', Validators.compose( [] )]
     });
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad RegisterPage');
+    this.registerForm.valueChanges.subscribe(data => {
+      this.checked = false;
+    })
   }
 
-  register(){
+  register() {
+    if(!this.validate()) {
+      return;  
+    }
     const loading = this.loadingCtrl.create({
-      content: 'Logging in. Please wait...'
+      content: 'Registering. Please wait...'
     });
     loading.present();
     this.backend.register(this.user).then(result => {
@@ -54,6 +60,15 @@ export class RegisterPage {
         });
         alert.present();
       });
+  }
+
+  validate() {
+    if(this.registerForm.valid) {
+      return true;
+    } else {
+      this.checked = true; 
+      return false;
+    }
   }
 
 }

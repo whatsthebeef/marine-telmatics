@@ -25,7 +25,7 @@
       <ion-label>Shore power</ion-label>
       <ion-input [ngClass]='{"fault":boat.shorepowerfault == 1}' type='text' readonly value='{{boat.shorepower == 1 ? "connected" : "disconnected"}}'></ion-input>
     </ion-item>
-    <ion-item>
+    <ion-item *ngIf='boat.antitheftloopalarm === 1'>
       <ion-label>Security</ion-label>
       <ion-input [ngClass]='{"fault":boat.antitheftloopfault == 1}' type='text' readonly value='{{boat.antitheftlooponoff == 1 ? "on" : "off"}}'></ion-input>
     </ion-item>
@@ -39,19 +39,19 @@
     </ion-item>
     <ion-item>
       <ion-label>Engine hours</ion-label>
-      <ion-input type='text' readonly value='{{boat.engine}}hrs'></ion-input>
+      <ion-input type='text' readonly value='{{boat.engine}} hrs'></ion-input>
     </ion-item>
     <ion-item>
       <ion-label>Direction</ion-label>
       <ion-input type='text' readonly value='{{boat.ignitiononoff === 1 ? boat.direction+"\xB0" : "Anchor"}}'></ion-input>
     </ion-item>
     <ion-item>
-      <ion-label>Ground speed</ion-label>
-      <ion-input type='text' readonly value='{{boat.groundspeed}}knots'></ion-input>
+      <ion-label>SOG</ion-label>
+      <ion-input type='text' readonly value='{{boat.groundspeed}} knots'></ion-input>
     </ion-item>
-    <ion-item *ngIf='boat.vbattmonitoring === 1'>
+    <ion-item *ngIf='boat.vbatmonitoring === 1'>
       <ion-label>Vibration</ion-label>
-      <ion-input type='text' readonly value='{{boat.vibration'></ion-input>
+      <ion-input type='text' readonly value='{{boat.vibration}}'></ion-input>
     </ion-item>
 
     <ion-item>
@@ -65,7 +65,7 @@
     </ion-item>
   </ion-list>
   <div #map id='map' [hidden]='!showMap'></div>
-  <ion-list>
+  <ion-list [hidden]='!showMap'>
     <ion-item *ngFor='let boat of boats'>
       <ion-label class='lonlat'>{{boat.name}}: lon {{boat.long}}, lat {{boat.lat}}</ion-label>
     </ion-item>
